@@ -95,7 +95,7 @@ void	search(Contact member[8], unsigned int added)
 	unsigned int		index;
 	std::string			data;
 
-	std::cout << "|   index  |first name| last name|   login  |"
+	std::cout << "|   index  |first name| last name| nickname |"
 			  << std::endl;
 	for (unsigned int j = 0; j < added; j++)
 	{
@@ -108,7 +108,7 @@ void	search(Contact member[8], unsigned int added)
 		std::cout << "|";
 		display_col(member[j].get_first_name());
 		display_col(member[j].get_last_name());
-		display_col(member[j].get_login());
+		display_col(member[j].get_nickname());
 		std::cout << std::endl;
 	}
 	if (added != 0)
