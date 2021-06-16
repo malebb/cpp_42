@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/16 19:22:51 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/16 19:26:00 by mlebrun          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.class.hpp"
 
 void	display_col(std::string data)
@@ -114,7 +126,7 @@ void	search(Contact member[8], unsigned int added)
 	}
 }
 
-int	main(void)
+int		main(void)
 {
 	std::string		cmd;
 	Contact			member[8];

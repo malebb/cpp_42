@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/16 19:22:38 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/16 19:33:40 by mlebrun          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.class.hpp"
 
 Contact::Contact( void ) {
@@ -7,7 +19,6 @@ Contact::Contact( void ) {
 Contact::~Contact( void ) {
 	return ;	
 }
-
 
 std::string	Contact::get_first_name( void ) const
 {
