@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = phonebook.cpp contact.cpp
+SRCS = phonebook.cpp Contact.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 

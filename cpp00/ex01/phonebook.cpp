@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.class.hpp"
+#include "Contact.hpp"
 
 void	display_col(std::string data)
 {
