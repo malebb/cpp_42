@@ -6,16 +6,15 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 00:44:10 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/17 01:23:39 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/06/17 13:48:17 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Pony.hpp"
 
-Pony::Pony(std::string color)
+Pony::Pony(std::string color) : _color(color)
 {
-	this->color = color;
-	this->eaten_apple = 0;
+	this->_eaten_apple = 0;
 	std::cout << "A new pony is born, so cute"
 			  << std::endl;
 }
@@ -30,11 +29,11 @@ Pony::~Pony( void )
 void	Pony::describe( void ) const
 {
 	std::cout << "Loke over there! You can see a sumptuous "
-			  << this->color
+			  << this->_color
 			  << " pony"
 			  << std::endl;
 	std::cout << "He has eaten " 
-			  << this->eaten_apple 
+			  << this->_eaten_apple 
 			  << " apple"
 			  << std::endl;
 }
@@ -43,12 +42,12 @@ void	Pony::eat_apple( void )
 {
 	std::cout << "*crunch*"
 		 << std::endl;
-	this->eaten_apple++;
+	this->_eaten_apple++;
 }
 
 void	Pony::fall( void )
 {
 	std::cout << "*BOOM*, ouch pony has fallen :("
 		 << std::endl;
-	this->eaten_apple++;
+	this->_eaten_apple++;
 }

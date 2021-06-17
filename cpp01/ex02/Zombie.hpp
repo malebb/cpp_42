@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Pony.hpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 00:37:13 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/17 13:46:10 by mlebrun          ###   ########.fr       */
+/*   Created: 2021/06/17 13:50:14 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/17 14:31:28 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	PONY_H
-# define PONY_H
+#ifndef ZOMBIE_H
+# define ZOMBIE_H
 
-#include <string>
 #include <iostream>
 
-class Pony {
+class Zombie
+{
 
 	public :
-		Pony( std::string color );
-		~Pony( void );
-		void	describe( void ) const;
-		void	eat_apple( void );
-		void	fall();
+		Zombie (std::string type);
+		void	announce( void ) const;
+		void	setName(std::string name);
 
 	private :
-		std::string _color;
-		int			_eaten_apple;
+		std::string		_name;
+		std::string		_type;
 };
 
 #endif
