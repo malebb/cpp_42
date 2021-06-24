@@ -6,15 +6,14 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 13:50:08 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/17 14:55:43 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/06/18 16:26:35 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie( std::string type) : _type(type)
+Zombie::Zombie(std::string name, std::string type) : _name(name), _type(type)
 {
-	
 }
 
 void	Zombie::setName(std::string name)

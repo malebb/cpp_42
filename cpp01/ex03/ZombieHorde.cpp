@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieEvent.cpp                                    :+:      :+:    :+:   */
+/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 13:50:48 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/18 16:27:02 by mlebrun          ###   ########.fr       */
+/*   Created: 2021/06/20 13:59:01 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/24 17:16:29 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ZombieEvent.hpp"
+#include "ZombieHorde.hpp"
+#include "Zombie.hpp"
 
-ZombieEvent::ZombieEvent( void )
+ZombieHorde::ZombieHorde( int n )
 {
+	this->_zombieHorde = new Zombie[n];
+
+	this->_nb = n;
 	std::srand(std::time(0));
-	this->_type = "classic";
 	this->_names[0] = "tibo";
 	this->_names[1] = "yves";
 	this->_names[2] = "bastien";
@@ -26,23 +29,19 @@ ZombieEvent::ZombieEvent( void )
 	this->_names[7] = "fabien";
 	this->_names[8] = "fabrice";
 	this->_names[9] = "emilien";
+	for (int i = 0; i < this->nb; i++)
+	{
+		this->_zombieHorde[i].setName(this->_names[0 + ( std::rand() % ( 9 - 0 + 1 ) )]);
+		new_zombie->announce();
+	}
 }
 
-void	ZombieEvent::setZombieType(std::string type)
-{
-	this->_type = type;
-}
 
-Zombie*		ZombieEvent::newZombie(std::string name) const
+void	ZombieHorde::announce( void ) const
 {
-	Zombie* new_zombie = new Zombie(name, this->_type);
-	return (new_zombie);
-}
-
-Zombie*		ZombieEvent::randomChump( void ) const
-{
-	Zombie* new_zombie = ZombieEvent::newZombie(this->_names[0 + ( std::rand() % ( 9 - 0 + 1 ) )]);
-	new_zombie->announce();
-	return (new_zombie);
+	for (int i = 0; i < this->_nb ; i++)
+	{
+		this->_zombieHorde[i].announce();
+	}
 }
 

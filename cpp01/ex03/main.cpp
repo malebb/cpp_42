@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieEvent.hpp                                    :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 13:50:57 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/18 13:52:09 by mlebrun          ###   ########.fr       */
+/*   Created: 2021/06/24 16:56:13 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/24 17:04:37 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_EVENT_H
-# define ZOMBIE_EVENT_H
+#include "ZombieHorde.hpp"
 
-#include <iostream>
-#include "Zombie.hpp"
-
-class ZombieEvent
+int		main(void)
 {
-	public :
-		ZombieEvent( void );
-		void setZombieType(std::string type);
-		Zombie* newZombie(std::string name) const;
-		Zombie*		randomChump( void ) const;
-		
-	private :
-		std::string		_type;
-		std::string		_names[10];
-};
+	ZombieHorde horde = ZombieHorde(7);
 
-#endif
+	horde.announce();
+	return (0);
+}

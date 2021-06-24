@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieEvent.hpp                                    :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 13:50:57 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/18 13:52:09 by mlebrun          ###   ########.fr       */
+/*   Created: 2021/06/17 13:50:08 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/24 17:16:31 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_EVENT_H
-# define ZOMBIE_EVENT_H
-
-#include <iostream>
 #include "Zombie.hpp"
 
-class ZombieEvent
+Zombie::Zombie()
 {
-	public :
-		ZombieEvent( void );
-		void setZombieType(std::string type);
-		Zombie* newZombie(std::string name) const;
-		Zombie*		randomChump( void ) const;
-		
-	private :
-		std::string		_type;
-		std::string		_names[10];
-};
+}
 
-#endif
+void	Zombie::setName(std::string name)
+{
+	this->_name = name;
+}
+
+void	Zombie::announce( void ) const
+{
+	std::cout << "Say hi to "
+		 << this->_name
+		 << " he's a zombie of type "
+		 << this->_type
+		 << " : Braiiiiiiinnnssss ..."
+		 << std::endl;
+}
