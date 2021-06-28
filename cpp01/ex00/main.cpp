@@ -5,41 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 00:36:19 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/17 01:22:33 by mlebrun          ###   ########.fr       */
+/*   Created: 2021/06/17 13:51:45 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/28 16:49:06 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Pony.hpp"
+#include "Zombie.hpp"
 
-void	ponyOnTheStack( void )
+int		main(void)
 {
-	Pony	my_pony = Pony("blue");
+	Zombie			zombie = Zombie("girafe");
+	Zombie*			zombie_2;
 
-	my_pony.describe();
-	my_pony.eat_apple();
-	my_pony.describe();
-	my_pony.fall();
-}
+	zombie.announce();
+	zombie_2 = zombie.newZombie("ourson");
+	zombie_2->announce();
+ 	zombie.randomChump("nastassia");
+	delete zombie_2;
 
-void	ponyOnTheHeap( void )
-{
-
-	Pony	*my_pony = new Pony("green");
-
-	my_pony->describe();
-	my_pony->eat_apple();
-	my_pony->eat_apple();
-	my_pony->eat_apple();
-	my_pony->eat_apple();
-	my_pony->describe();
-	my_pony->fall();
-	delete my_pony;
-}
-
-int		main( void )
-{
-	ponyOnTheStack();
-	ponyOnTheHeap();
-	return 0;
 }

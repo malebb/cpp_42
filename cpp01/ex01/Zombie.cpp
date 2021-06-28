@@ -6,27 +6,26 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 13:50:08 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/24 17:16:31 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/06/28 14:52:30 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie()
+Zombie::Zombie(std::string name) : _name(name)
 {
 }
 
-void	Zombie::setName(std::string name)
+Zombie::~Zombie( void )
 {
-	this->_name = name;
+	std::cout << this->_name << " died" << std::endl;
 }
 
 void	Zombie::announce( void ) const
 {
 	std::cout << "Say hi to "
 		 << this->_name
-		 << " he's a zombie of type "
-		 << this->_type
-		 << " : Braiiiiiiinnnssss ..."
+		 << " : BraiiiiiiinnnzzzZ..."
 		 << std::endl;
 }
+

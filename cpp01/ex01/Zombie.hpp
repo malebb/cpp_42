@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieHorde.hpp                                    :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/20 13:57:07 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/24 17:16:27 by mlebrun          ###   ########.fr       */
+/*   Created: 2021/06/17 13:50:14 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/28 14:43:49 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIEHORDE_H
-# define ZOMBIEHORDE_H
+#ifndef ZOMBIE_H
+# define ZOMBIE_H
 
 #include <iostream>
-#include "Zombie.hpp"
 
-class ZombieHorde
+class Zombie
 {
+
 	public :
-		ZombieHorde(int n);
+		Zombie (std::string name);
+		~Zombie ( void );
 		void	announce( void ) const;
+		Zombie* newZombie(std::string name) const ;
+		void	randomChump( std::string name ) ;
+
 
 	private :
-		int				_nb;
-		std::string		_names[10];
-		Zombie*			_zombieHorde;
+		std::string		_name;
 };
 
 #endif
