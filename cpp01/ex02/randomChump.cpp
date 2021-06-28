@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieEvent.hpp                                    :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 13:50:57 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/18 13:52:09 by mlebrun          ###   ########.fr       */
+/*   Created: 2021/06/28 14:52:53 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/28 14:53:16 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_EVENT_H
-# define ZOMBIE_EVENT_H
-
-#include <iostream>
 #include "Zombie.hpp"
 
-class ZombieEvent
+void		Zombie::randomChump(std::string name)
 {
-	public :
-		ZombieEvent( void );
-		void setZombieType(std::string type);
-		Zombie* newZombie(std::string name) const;
-		Zombie*		randomChump( void ) const;
-		
-	private :
-		std::string		_type;
-		std::string		_names[10];
-};
-
-#endif
+	Zombie *zombie = Zombie::newZombie(name);
+	zombie->announce();
+	delete zombie;
+}
