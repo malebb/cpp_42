@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 13:50:14 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/29 11:28:50 by mlebrun          ###   ########.fr       */
+/*   Created: 2021/06/29 11:46:02 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/29 13:43:05 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_H
-# define ZOMBIE_H
-
 #include <iostream>
 
-class Zombie
+int		main( void )
 {
-
-	public :
-		Zombie ( void );
-		~Zombie ( void );
-		void	announce( void ) const;
-		Zombie* newZombie(std::string name) const ;
-		void	randomChump( std::string name ) ;
-		void	setName( std::string name );
-
-
-	private :
-		std::string		_name;
-};
-
-#endif
+	std::string str = "HI THIS IS BRAIN";
+	std::string *stringPTR = &str;
+	std::string &stringREF = str;
+	std::cout << "Address pointer: " << stringPTR << std::endl;
+	std::cout << "Address reference: " << &stringREF << std::endl;
+	std::cout << "String pointer: " << *stringPTR << std::endl;
+	std::cout << "String reference: " << stringREF << std::endl;
+	return (0);
+}

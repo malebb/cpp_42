@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 09:16:02 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/29 09:27:33 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/06/29 11:35:47 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 int		main(void)
 {
-	Zombie		zombie = Zombie("tibo");
+	Zombie		zombie = Zombie();
 	Zombie*		horde;
+	int			N;
 
-	horde = zombie.zombieHorde(23, "lilou");
+	N = 7;
+	horde = zombie.zombieHorde(N, "lilou");
+	for (int i = 0; i < N; i++)
+	{
+		horde[i].announce();
+	}
+	delete [] horde;
 }

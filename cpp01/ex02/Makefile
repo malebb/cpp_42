@@ -6,11 +6,11 @@
 #    By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/16 19:23:05 by mlebrun           #+#    #+#              #
-#    Updated: 2021/06/29 11:41:25 by mlebrun          ###   ########.fr        #
+#    Updated: 2021/06/29 11:48:07 by mlebrun          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.cpp Zombie.cpp ZombieHorde.cpp
+SRCS = main.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
@@ -18,7 +18,7 @@ CC = clang++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = horde
+NAME = str_ref
 RM	= rm -rf
 
 all:		${NAME}
