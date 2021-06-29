@@ -6,11 +6,11 @@
 #    By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/16 19:23:05 by mlebrun           #+#    #+#              #
-#    Updated: 2021/06/28 16:54:26 by mlebrun          ###   ########.fr        #
+#    Updated: 2021/06/29 09:26:49 by mlebrun          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.cpp Zombie.cpp randomChump.cpp newZombie.cpp
+SRCS = main.cpp Zombie.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 

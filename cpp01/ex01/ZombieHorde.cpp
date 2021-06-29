@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 13:51:45 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/06/29 09:41:42 by mlebrun          ###   ########.fr       */
+/*   Created: 2021/06/29 09:29:21 by mlebrun           #+#    #+#             */
+/*   Updated: 2021/06/29 09:41:40 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int		main(void)
+void	Zombie::setName(std::string name)
 {
-	Zombie			zombie = Zombie("girafe");
-	Zombie*			zombie_2;
+	this->name = name;	
+}
 
-	zombie.announce();
-	zombie_2 = zombie.newZombie("ourson");
-	zombie_2->announce();
- 	zombie.randomChump("nastassia");
-	zombie.zombieHorde(123);
-	delete zombie_2;
-
+Zombie*	Zombie::zombieHorde(int N, std::string name)
+{
+	Zombie*		horde = new Zombie[n]
+	
+	for (int i = 0 ; i < n; i++)
+	{
+		horde[i].setName(name);
+	}
+	return (horde);
 }
