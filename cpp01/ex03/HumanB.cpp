@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:30:16 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/02 14:37:24 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/07/02 16:39:14 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include "HumanB.hpp"
 
-HumanA::HumanA(std::string name, Weapon &weapon) : _name(name) , _weapon(weapon)
+HumanB::HumanB(std::string name) : _name(name), _weapon(NULL)
 {
-
+	
 }
 
-void	HumanA::attack()
+void	HumanB::attack()
 {
-	std::cout << this->_name << " attacks with his " << this->_weapon.getType() << std::endl;
+	if (this->_weapon->getType() == "nothing")
+		std::cout << this->_name << " is disarmed" << std::endl;
+	else
+		std::cout << this->_name << " attacks with his " << this->_weapon->getType() << std::endl;
+}
+
+void	HumanB::setWeapon( Weapon weapon )
+{
+	this->_weapon = &weapon;
 }
