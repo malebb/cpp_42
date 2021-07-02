@@ -6,11 +6,11 @@
 #    By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/16 19:23:05 by mlebrun           #+#    #+#              #
-#    Updated: 2021/06/29 14:07:23 by mlebrun          ###   ########.fr        #
+#    Updated: 2021/07/02 10:53:26 by mlebrun          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.cpp Weapon.cpp
+SRCS = main.cpp Weapon.cpp HumanA.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
