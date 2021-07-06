@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 11:13:53 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/05 15:05:31 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/07/06 10:34:48 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,27 @@
 
 typedef	struct		s_msg
 {
-	
-};
+	std::string		level;
+	void (Karen::*level_function) (void);
+}					t_msg;
 
 void	Karen::complain( std::string level )
 {
-	void (Karen::*FuncPtr) ( void );
+	t_msg		msgs[4] = {{"DEBUG", &Karen::debug}, {"INFO", &Karen::info}, {"WARNING", &Karen::warning}, {"ERROR", &Karen::error}};
+	int			found;
 
-	(void)level;
-	FuncPtr = &Karen::level;
+	found = 0;
 	for (int i = 0; i < 4; i++)
 	{
-		if ()
+		if (!msgs[i].level.compare(level))
+		{
+			(this->*(msgs[i].level_function))();
+			found++;
+			break;
+		}
 	}
-	(this->*FuncPtr)();
+	if (!found)
+		std::cout << "Error: \"" << level << "\" level does not exist" << std::endl;
 }
 
 void	Karen::debug( void )
