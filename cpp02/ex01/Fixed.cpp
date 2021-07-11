@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:44:31 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/11 13:20:39 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/07/11 14:23:30 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ Fixed::Fixed( Fixed const & src )
 Fixed&		Fixed::operator=( Fixed const & rhs )
 {
 	std::cout << "Assignation operator called" << std::endl;
-	this->Fixed(rhs.getRawBits());
+	this->_fixed_point = rhs._fixed_point;
 	return *this;
 }
 
