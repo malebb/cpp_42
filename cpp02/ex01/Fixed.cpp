@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:44:31 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/10 17:41:34 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/07/11 13:20:39 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,28 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const int nb)
+Fixed::Fixed(const int nb) : _fixed_point(nb * 256)
 {
-	(void)nb;
+
+	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float nb)
+Fixed::Fixed(const float nb) : _fixed_point((int)std::roundf(nb * 256))
 {
+	std::cout << "Float constructor called" << std::endl;
 }
 
 float	Fixed::toFloat( void ) const
 {
-	return ((float)this->_fixed_point);
+	float		fixed_point;
+
+	fixed_point = (float)this->_fixed_point;
+	return ((float)(fixed_point / 256));
 }
 
-int		Fixed::toInt( void )
+int		Fixed::toInt( void ) const
 {
-	return ((int)this->_fixed_point);
+	return ((int)this->_fixed_point / 256);
 }
 
 Fixed::Fixed( Fixed const & src )
@@ -51,8 +56,14 @@ Fixed::Fixed( Fixed const & src )
 Fixed&		Fixed::operator=( Fixed const & rhs )
 {
 	std::cout << "Assignation operator called" << std::endl;
-	this->_fixed_point = rhs.getRawBits();
+	this->Fixed(rhs.getRawBits());
 	return *this;
+}
+
+std::ostream & operator<<(std::ostream & o, Fixed const & rhs)
+{
+	o << rhs.toFloat();
+	return o;
 }
 
 int		Fixed::getRawBits( void ) const
