@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:42:39 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/14 15:58:05 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/07/15 11:54:04 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ class Fixed
 		Fixed&	operator-( Fixed const & rhs );
 		Fixed&	operator*( Fixed const & rhs );
 		Fixed&	operator/( Fixed const & rhs );
-		Fixed&	operator++( void );
+		Fixed	operator++( void );
 		Fixed	operator++( int );
+		Fixed	operator--( void );
+		Fixed	operator--( int );
 		int		operator>( Fixed const & rhs ) const;
 		int		operator<( Fixed const & rhs ) const;
 		int		operator>=( Fixed const & rhs ) const;

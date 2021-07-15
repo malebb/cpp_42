@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:08:59 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/14 16:39:07 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/07/15 14:46:26 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 int	main(void)
 {
+	
+	Fixed a;
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+/*
 	Fixed			a(1);
 	Fixed			b(2);
 	Fixed			c(3);
 	Fixed			d(3);
-/*
 	std::cout << std::endl;
 	std::cout << "A is " << a << std::endl;
 	std::cout << "B is " << b << std::endl;
@@ -45,9 +54,9 @@ int	main(void)
 	std::cout << "A is " << a << std::endl;
 	a = a / d;
 	std::cout << "A is " << a << std::endl;
-	*/
-	std::cout << "ICI: " << ++a << std::endl;
+	std::cout << "A is: " << a-- << std::endl;
 	std::cout << "A is " << a << std::endl;
 	std::cout << std::endl;
+	*/
 	return (0);
 }

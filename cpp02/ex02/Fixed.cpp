@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:44:31 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/14 16:45:10 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/07/15 15:02:02 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,18 @@
 
 Fixed::Fixed() : _fixed_point(0)
 {
-	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(const int nb) : _fixed_point(nb * 256)
 {
-
-	std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float nb) : _fixed_point((int)std::roundf(nb * 256))
 {
-	std::cout << "Float constructor called" << std::endl;
 }
 
 float	Fixed::toFloat( void ) const
@@ -48,14 +43,12 @@ int		Fixed::toInt( void ) const
 
 Fixed::Fixed( Fixed const & src )
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 	return ;
 }
 
 Fixed&		Fixed::operator=( Fixed const & rhs )
 {
-	std::cout << "Assignation operator called" << std::endl;
 	this->_fixed_point = rhs._fixed_point;
 	return *this;
 }
@@ -86,33 +79,49 @@ Fixed&		Fixed::operator/( Fixed const & rhs )
 	return *this;
 }
 
-Fixed&		Fixed::operator++( void )
+Fixed		Fixed::operator++( void )
 {
-	int		fp;
+	float		fp;
+	fp = (1/256);
 
-	std::cout << "NON" << std::endl;
-	fp = this->toInt();
-	fp++;
-	fp *= 256;
-	this->_fixed_point = fp;
-	std::cout << "POIS: " << *this << std::endl;
-	return *this;
+	std::cout << "FP = " << fp << std::endl;
+	fp = this->toFloat();
+//	this->_fixed_point = this->toInt();
+//	this->_fixed_point+=;
+	fp += 0.0390625;
+	this->_fixed_point = (fp * 256);
+	std::cout << "DEBUG" << this->toFloat() << std::endl;
+	return (*this);
 }
 
 Fixed		Fixed::operator++( int )
 {
 	Fixed		tmp;
-	int			fp;
 
-	std::cout << "OUI" << std::endl;
-	tmp = *this;
-	fp = this->toInt();
-	//++fp;
-	//fp *= 256;
-	//this->_fixed_point = fp;
-	this->_fixed_point = fp;
-	(++(*this)) * 256;
-	return *this;
+	tmp._fixed_point = this->_fixed_point;
+	this->_fixed_point = this->toInt();
+	this->_fixed_point++;
+	this->_fixed_point *= 256;
+	return (tmp);
+}
+
+Fixed		Fixed::operator--( void )
+{
+	this->_fixed_point = this->toInt();
+	this->_fixed_point--;
+	this->_fixed_point *= 256;
+	return (*this);
+}
+
+Fixed		Fixed::operator--( int )
+{
+	Fixed		tmp;
+
+	tmp._fixed_point = this->_fixed_point;
+	this->_fixed_point = this->toInt();
+	this->_fixed_point--;
+	this->_fixed_point *= 256;
+	return (tmp);
 }
 
 std::ostream & operator<<(std::ostream & o, Fixed const & rhs)
@@ -165,7 +174,6 @@ int	Fixed::operator!=(Fixed const & rhs ) const
 
 int		Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawbits member function called" << std::endl;
 	return (this->_fixed_point);
 }
 
