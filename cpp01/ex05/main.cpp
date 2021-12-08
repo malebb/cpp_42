@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 11:59:22 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/06 10:40:56 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/12/08 14:27:16 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int		main( void )
 		}
 	}
 	while (level.compare("EXIT") != 0);
-	std::cout << "Exited successfuly" << std::endl;
+	std::cout << "Exited successfully" << std::endl;
 	return (0);
 }
