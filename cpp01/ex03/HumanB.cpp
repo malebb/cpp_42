@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:30:16 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/04 13:20:13 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/12/08 10:13:58 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ HumanB::HumanB(std::string name) : _name(name), _weapon(NULL)
 
 void	HumanB::attack()
 {
-	if (this->_weapon->getType() == "nothing")
+	if (!this->_weapon)
 		std::cout << this->_name << " is disarmed" << std::endl;
 	else
 		std::cout << this->_name << " attacks with his " << this->_weapon->getType() << std::endl;

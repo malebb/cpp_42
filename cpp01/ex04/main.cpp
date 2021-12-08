@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 13:28:37 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/05 10:55:57 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/12/08 11:15:17 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	std::ifstream	ifs(argv[1]);
 	std::string		replace_file(argv[1]);
 	replace_file += ".replace";
-	std::ofstream	ofs(replace_file);
+	std::ofstream	ofs(replace_file.c_str());
 	std::string		file;
 
 	if (!ifs)
@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 		file += line;
 		file += "\n";
 	}
+
 	ifs.close();
 
 	const unsigned int	size_str1 = str1.length();
