@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:44:31 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/11 14:23:30 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/12/11 14:51:46 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ Fixed::~Fixed()
 
 Fixed::Fixed(const int nb) : _fixed_point(nb * 256)
 {
-
 	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float nb) : _fixed_point((int)std::roundf(nb * 256))
+Fixed::Fixed(const float nb) : _fixed_point((int)roundf(nb * 256))
 {
 	std::cout << "Float constructor called" << std::endl;
 }
@@ -38,7 +37,7 @@ float	Fixed::toFloat( void ) const
 	float		fixed_point;
 
 	fixed_point = (float)this->_fixed_point;
-	return ((float)(fixed_point / 256));
+	return (fixed_point / 256);
 }
 
 int		Fixed::toInt( void ) const

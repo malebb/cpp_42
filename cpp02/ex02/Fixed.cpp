@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:44:31 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/07/18 14:50:21 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/12/13 13:40:13 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Fixed::Fixed(const int nb) : _fixed_point(nb * 256)
 {
 }
 
-Fixed::Fixed(const float nb) : _fixed_point((int)std::roundf(nb * 256))
+Fixed::Fixed(const float nb) : _fixed_point((int)roundf(nb * 256))
 {
 }
 
@@ -53,76 +53,65 @@ Fixed&			Fixed::operator=( Fixed const & rhs )
 	return *this;
 }
 
-Fixed&			Fixed::operator+( Fixed const & rhs )
+Fixed			Fixed::operator+( Fixed const & rhs )
 {
-	this->_fixed_point = this->_fixed_point + rhs._fixed_point;
-	return *this;
+	Fixed		fp;
+
+	fp.setRawBits(this->getRawBits() + rhs.getRawBits());
+	return (fp);
 }
 
-Fixed&			Fixed::operator-( Fixed const & rhs )
+Fixed			Fixed::operator-( Fixed const & rhs )
 {
-	this->_fixed_point = this->_fixed_point - rhs._fixed_point;
-	return *this;
+	Fixed		fp;
+
+	fp.setRawBits(this->getRawBits() - rhs.getRawBits());
+	return (fp);
 }
 
-Fixed&			Fixed::operator*( Fixed const & rhs )
+Fixed			Fixed::operator*( Fixed const & rhs )
 {
-	float	fp;
+	Fixed		fp;
 
-	fp = this->toFloat();
-	fp *= rhs._fixed_point;
-	this->_fixed_point = fp;
-	return *this;
+	fp.setRawBits(this->getRawBits() * rhs.getRawBits());
+	return (fp);
 }
 
-Fixed&			Fixed::operator/( Fixed const & rhs )
+Fixed			Fixed::operator/( Fixed const & rhs )
 {
-	this->_fixed_point *= 256;
-	this->_fixed_point = (this->_fixed_point / rhs._fixed_point);
-	return *this;
+	Fixed		fp;
+
+	fp.setRawBits(this->getRawBits() / rhs.getRawBits());
+	return (fp);
 }
 
 Fixed			Fixed::operator++( void )
 {
-	float		fp;
-
-	fp = this->toFloat();
-	fp += 0.0390625;
-	this->_fixed_point = (fp * 256);
+	this->_fixed_point = this->_fixed_point + 1;
 	return (*this);
 }
 
 Fixed			Fixed::operator++( int )
 {
 	Fixed		tmp;
-	float		fp;
 
-	tmp._fixed_point = this->_fixed_point;
-	fp = this->toFloat();
-	fp += 0.0390625;
-	this->_fixed_point = (fp * 256);
+	tmp = *this;
+	++(*this);
 	return (tmp);
 }
 
 Fixed			Fixed::operator--( void )
 {
-	float		fp;
-
-	fp = this->toFloat();
-	fp -= 0.0390625;
-	this->_fixed_point = (fp * 256);
+	this->_fixed_point--;
 	return (*this);
 }
 
 Fixed			Fixed::operator--( int )
 {
 	Fixed		tmp;
-	float		fp;
 
-	tmp._fixed_point = this->_fixed_point;
-	fp = this->toFloat();
-	fp -= 0.0390625;
-	this->_fixed_point = (fp * 256);
+	tmp = *this;
+	--(*this);
 	return (tmp);
 }
 
@@ -130,34 +119,6 @@ std::ostream &	operator<<(std::ostream & o, Fixed const & rhs)
 {
 	o << rhs.toFloat();
 	return o;
-}
-
-int				Fixed::operator>(Fixed const & rhs ) const
-{
-	if (this->_fixed_point > rhs._fixed_point)
-		return (1);
-	return (0);
-}
-
-int				Fixed::operator<(Fixed const & rhs ) const
-{
-	if (this->_fixed_point < rhs._fixed_point)
-		return (1);
-	return (0);
-}
-
-int				Fixed::operator>=(Fixed const & rhs ) const
-{
-	if (this->_fixed_point >= rhs._fixed_point)
-		return (1);
-	return (0);
-}
-
-int				Fixed::operator<=(Fixed const & rhs ) const
-{
-	if (this->_fixed_point <= rhs._fixed_point)
-		return (1);
-	return (0);
 }
 
 int				Fixed::operator==(Fixed const & rhs ) const
@@ -169,10 +130,40 @@ int				Fixed::operator==(Fixed const & rhs ) const
 
 int				Fixed::operator!=(Fixed const & rhs ) const
 {
-	if (this->_fixed_point != rhs._fixed_point)
+	if (*this == rhs)
+		return (0);
+	return (1);
+}
+
+
+int				Fixed::operator>(Fixed const & rhs ) const
+{
+	if (this->_fixed_point > rhs._fixed_point)
 		return (1);
 	return (0);
 }
+
+int				Fixed::operator<(Fixed const & rhs ) const
+{
+	if (*this > rhs || *this == rhs)
+		return (0);
+	return (1);
+}
+
+int				Fixed::operator>=(Fixed const & rhs ) const
+{
+	if (*this < rhs)
+		return (0);
+	return (1);
+}
+
+int				Fixed::operator<=(Fixed const & rhs ) const
+{
+	if (*this > rhs)
+		return (0);
+	return (1);
+}
+
 
 int				Fixed::getRawBits( void ) const
 {
