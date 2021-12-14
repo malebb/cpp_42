@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:44:31 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/12/13 13:40:13 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/12/14 13:45:10 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ float			Fixed::toFloat( void ) const
 	float		fixed_point;
 
 	fixed_point = (float)this->_fixed_point;
-	return ((float)(fixed_point / 256));
+	return ((fixed_point / 256));
 }
 
 int				Fixed::toInt( void ) const
@@ -55,34 +55,22 @@ Fixed&			Fixed::operator=( Fixed const & rhs )
 
 Fixed			Fixed::operator+( Fixed const & rhs )
 {
-	Fixed		fp;
-
-	fp.setRawBits(this->getRawBits() + rhs.getRawBits());
-	return (fp);
+	return Fixed(this->toFloat() + rhs.toFloat());
 }
 
 Fixed			Fixed::operator-( Fixed const & rhs )
 {
-	Fixed		fp;
-
-	fp.setRawBits(this->getRawBits() - rhs.getRawBits());
-	return (fp);
+	return Fixed(this->toFloat() - rhs.toFloat());
 }
 
 Fixed			Fixed::operator*( Fixed const & rhs )
 {
-	Fixed		fp;
-
-	fp.setRawBits(this->getRawBits() * rhs.getRawBits());
-	return (fp);
+	return Fixed(this->toFloat() * rhs.toFloat());
 }
 
 Fixed			Fixed::operator/( Fixed const & rhs )
 {
-	Fixed		fp;
-
-	fp.setRawBits(this->getRawBits() / rhs.getRawBits());
-	return (fp);
+	return Fixed(this->toFloat() / rhs.toFloat());
 }
 
 Fixed			Fixed::operator++( void )
