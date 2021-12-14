@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:44:31 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/12/11 14:51:46 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/12/14 14:06:35 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ float	Fixed::toFloat( void ) const
 
 int		Fixed::toInt( void ) const
 {
-	return ((int)this->_fixed_point / 256);
+	return (this->_fixed_point / 256);
 }
 
 Fixed::Fixed( Fixed const & src )
