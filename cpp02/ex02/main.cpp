@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:08:59 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/12/14 13:55:03 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/12/15 07:20:49 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ int	main(void)
 	std::cout << "nb2 = " << nb2.getRawBits() << std::endl;
 	std::cout << "nb3 = " << nb3.getRawBits() << std::endl;
 	if (nb <= nb2)
-	{
 		std::cout << "nb is less or equal to nb2" << std::endl;
-	}
 	if (nb < nb2)
 		std::cout << "nb is less than nb2" << std::endl;
 	if (nb2 >= nb3)
