@@ -6,7 +6,7 @@
 /*   By: mlebrun <mlebrun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:44:31 by mlebrun           #+#    #+#             */
-/*   Updated: 2021/12/14 14:28:11 by mlebrun          ###   ########.fr       */
+/*   Updated: 2021/12/15 07:34:19 by mlebrun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ Fixed			Fixed::operator/( Fixed const & rhs )
 
 Fixed			Fixed::operator++( void )
 {
-	this->_fixed_point = this->_fixed_point + 1;
+	this->_fixed_point ++;
 	return (*this);
 }
 
