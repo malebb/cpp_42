@@ -10,6 +10,20 @@ ClapTrap::~ClapTrap()
 	std::cout << "Bye " << this->_name << std::endl;
 }
 
+ClapTrap::ClapTrap(ClapTrap const & src)
+{
+	*this = src;
+}
+
+ClapTrap&	ClapTrap::operator=(ClapTrap const & rhs)
+{
+	this->_name = rhs._name;
+	this->_hit_points = rhs._hit_points;
+	this->_energy_points = rhs._energy_points;
+	this->_attack_damage = rhs._attack_damage;
+	return (*this);
+}
+
 void	ClapTrap::attack(std::string const & target)
 {
 	if (this->_energy_points >= 2)
@@ -34,7 +48,6 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	}
 	else
 		std::cout << "ClapTrap " << this->_name << " is already out of order" << std::endl;
-		
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
