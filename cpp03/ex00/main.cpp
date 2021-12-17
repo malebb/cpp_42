@@ -4,6 +4,7 @@ int	main(void)
 {
 	ClapTrap	joj("joj");
 	ClapTrap	joblux("joblux");
+	ClapTrap	clone(joblux);
 
 	// Joj attack until he is out of energy
 

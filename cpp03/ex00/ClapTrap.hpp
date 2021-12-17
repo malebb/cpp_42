@@ -6,9 +6,11 @@
 class ClapTrap
 {
 	public :
-		ClapTrap(std::string name);
+		ClapTrap();
 		~ClapTrap();
+		ClapTrap(ClapTrap const & src);
 		ClapTrap		&operator=(ClapTrap const & rhs);
+		ClapTrap(std::string name);
 		void			attack(std::string const & target);
 		void			takeDamage(unsigned int amount);
 		void			beRepaired(unsigned int amount);
