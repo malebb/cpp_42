@@ -1,4 +1,6 @@
-class	FrapTrap : public ClapTrap
+#include "ClapTrap.hpp"
+
+class	FragTrap : public ClapTrap
 {
 	public :
 		FragTrap();
@@ -6,4 +8,8 @@ class	FrapTrap : public ClapTrap
 		FragTrap(FragTrap const & src);
 		FragTrap(std::string name);
 		FragTrap	&operator=(FragTrap const & rhs);
+
+	private :
+		void	highFivesGuys(void);
+
 };
