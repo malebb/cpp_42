@@ -3,37 +3,18 @@
 int	main(void)
 {
 	ClapTrap	joj("joj");
-	ClapTrap	joblux("joblux");
-	ClapTrap	clone(joblux);
 
-	// Joj attack until he is out of energy
+	joj.attack("joblux");
+	joj.attack("joblux");
+	joj.attack("joblux");
+	joj.attack("joblux");
+	joj.attack("joblux");
+	joj.attack("joblux");
 
-	joj.attack("le mechant la");
-	joj.attack("le mechant la");
-	joj.attack("le mechant la");
-	joj.attack("le mechant la");
-	joj.attack("le mechant la");
-	joj.attack("le mechant la");
-
-	// Joblux taking damage until he is out hit point
-
-	joblux.takeDamage(2);
-	joblux.takeDamage(2);
-	joblux.takeDamage(2);
-	joblux.takeDamage(2);
-	joblux.takeDamage(2);
-	joblux.takeDamage(2);
-	joblux.takeDamage(2);
-	joblux.takeDamage(2);
-
-	// Joblux is repaired and can take more damage
-
-	joblux.beRepaired(10);
-	joj.attack("joj");
-	joj.attack("joj");
-	joblux.takeDamage(2);
-	joblux.takeDamage(2);
-	joblux.takeDamage(2);
+	joj.takeDamage(10);
+	joj.takeDamage(10);
+	joj.beRepaired(10);
+	joj.takeDamage(5);
 
 	return (0);
 }

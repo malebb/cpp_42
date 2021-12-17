@@ -1,5 +1,10 @@
 #include "ScavTrap.hpp"
 
+ScavTrap::ScavTrap() : ClapTrap("unamed", 100, 50, 20)
+{
+	std::cout << "A new ScavTrap has been created !" << std::endl;
+}
+
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20)
 {
 	std::cout << "Oh ! it's the ScavTrap " << name << " ! HP = " << this->_hit_points << std::endl;

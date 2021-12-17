@@ -8,7 +8,7 @@ CC = clang++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = scavTrap
+NAME = fragTrap
 RM	= rm -rf
 
 .PHONY:		all

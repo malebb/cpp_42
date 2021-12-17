@@ -47,7 +47,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	{
 		this->_hit_points -= amount;
 		std::cout << "ClapTrap " << this->_name << " has been attacked ! -" \
-		<< amount << " HP" << std::endl;
+		<< amount << " HP" << " | HP = " << this->_hit_points <<std::endl;
 		if (this->_hit_points <= 0)
 			std::cout << "ClapTrap " << this->_name << " is out of order" << std::endl;
 	}
@@ -59,5 +59,5 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	this->_hit_points += amount;
 	std::cout << "ClapTrap " << this->_name << " has been repaired ! +" \
-	<< amount << " HP"<< std::endl;
+	<< amount << " HP" << " | HP = " << this->_hit_points << std::endl;
 }

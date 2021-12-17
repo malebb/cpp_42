@@ -5,16 +5,16 @@ ClapTrap::ClapTrap() : _name("unamed"), _hit_points(10), _energy_points(10), _at
 	std::cout << "A new CrapTrap has been created !" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(10), _energy_points(10), _attack_damage(0)
+ClapTrap::ClapTrap(std::string name, unsigned int hit_points,
+	unsigned int energy_points, unsigned int attack_damage) : _name(name),
+	_hit_points(hit_points), _energy_points(energy_points), _attack_damage(attack_damage)
 {
-	std::cout << "Oh ! it's the CrapTrap " << name << " ! HP = " << this->_hit_points << std::endl;
+	std::cout << "Oh ! it's the ClapTrap " << name << " ! HP = " << this->_hit_points << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name, unsigned int hit_points,
-	unsigned int energy_points, unsigned int attack_damage) 
-	: _name(name), _hit_points(hit_points), _energy_points(energy_points), _attack_damage(attack_damage)
+ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(10), _energy_points(10), _attack_damage(0)
 {
-	std::cout << "Oh ! it's the CrapTrap " << name << " ! HP = " << this->_hit_points << std::endl;
+	std::cout << "Oh ! it's the ClapTrap " << name << " ! HP = " << this->_hit_points << std::endl;
 }
 
 ClapTrap::~ClapTrap()
@@ -54,7 +54,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	{
 		this->_hit_points -= amount;
 		std::cout << "ClapTrap " << this->_name << " has been attacked ! -" \
-		<< amount << " HP" << std::endl;
+		<< amount << " HP" << " | HP = " << this->_hit_points <<std::endl;
 		if (this->_hit_points <= 0)
 			std::cout << "ClapTrap " << this->_name << " is out of order" << std::endl;
 	}
@@ -66,5 +66,5 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	this->_hit_points += amount;
 	std::cout << "ClapTrap " << this->_name << " has been repaired ! +" \
-	<< amount << " HP"<< std::endl;
+	<< amount << " HP" << " | HP = " << this->_hit_points << std::endl;
 }
