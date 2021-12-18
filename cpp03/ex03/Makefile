@@ -6,7 +6,7 @@ DEP = ${SRCS:.cpp=.d}
 
 CC = clang++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = fragTrap
 RM	= rm -rf

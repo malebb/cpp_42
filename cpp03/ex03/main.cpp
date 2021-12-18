@@ -1,49 +1,78 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
-
-	ClapTrap	joj("joj");
-	ScavTrap	joblux("joblux");
-	FragTrap	matheu("matheu");
-
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-
-	//ClapTrap outputs
-	joj.takeDamage(10);
-	joj.takeDamage(10);
-	joj.beRepaired(10);
-	joj.takeDamage(5);
+	std::cout << "------------ClapTrap Test------------" << std::endl << std::endl;
+	ClapTrap		*joj = new ClapTrap("joj");
 
 	std::cout << std::endl;
 
-	//ScavTrap outputs
-	joblux.attack("un type");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
 
-	joblux.takeDamage(50);
-	joblux.takeDamage(50);
-	joblux.takeDamage(5);
-	joblux.attack("joj");
+	joj->takeDamage(10);
+	joj->takeDamage(10);
+	joj->beRepaired(10);
+	joj->takeDamage(5);
 
-	joblux.guardGate();
+	std::cout << std::endl;
+	delete joj;
+	std::cout << std::endl;
+
+	std::cout << "------------ScavTrap Test------------" << std::endl << std::endl;
+	ScavTrap		*joblux = new ScavTrap("joblux");
 
 	std::cout << std::endl;
 
-	matheu.attack("un type");
+	joblux->attack("un type");
 
-	matheu.takeDamage(50);
-	matheu.takeDamage(50);
-	matheu.takeDamage(5);
-	matheu.attack("le mechant");
+	joblux->takeDamage(50);
+	joblux->takeDamage(50);
+	joblux->takeDamage(5);
+	joblux->attack("joj");
 
-	matheu.highFivesGuys();
+	joblux->guardGate();
+	std::cout << std::endl;
+	delete joblux;
+	std::cout << std::endl;
 
+	std::cout << "------------FragTrap Test------------" << std::endl << std::endl;
+
+	FragTrap		*matheu = new FragTrap("matheu");
+
+	std::cout << std::endl;
+
+	matheu->attack("un type");
+
+	matheu->takeDamage(50);
+	matheu->takeDamage(50);
+	matheu->takeDamage(5);
+	matheu->attack("le mechant");
+
+	matheu->highFivesGuys();
+
+	std::cout << std::endl;
+	delete matheu;
+	std::cout << std::endl;
+
+	std::cout << "------------DiamondTrap Test------------" << std::endl << std::endl ;
+	DiamondTrap		*monster = new DiamondTrap("monster");
+
+	std::cout << std::endl;
+
+	monster->whoAmI();
+	monster->attack("un autre monstre");
+	monster->takeDamage(50);
+	monster->takeDamage(50);
+	monster->takeDamage(50);
+	std::cout << std::endl;
+	delete monster;
 	std::cout << std::endl;
 
 	return (0);

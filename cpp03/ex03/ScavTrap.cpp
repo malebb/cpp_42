@@ -1,7 +1,10 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap("unamed", 100, 50, 20)
+ScavTrap::ScavTrap()
 {
+	this->_hit_points = 100;
+	this->_energy_points = 50;
+	this->_attack_damage = 20;
 	std::cout << "A new ScavTrap has been created !" << std::endl;
 }
 

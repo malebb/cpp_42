@@ -1,7 +1,10 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(): ClapTrap("unamed", 100, 100, 30)
+FragTrap::FragTrap()
 {
+	this->_hit_points = 100;
+	this->_energy_points = 100;
+	this->_attack_damage = 30;
 	std::cout << "A new FragTrap has been created !" << std::endl;
 }
 

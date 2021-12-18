@@ -1,6 +1,9 @@
 #include "ClapTrap.hpp"
 
-class	FragTrap : public ClapTrap
+#ifndef		FRAGTRAP_HPP
+# define	FRAGTRAP_HPP
+
+class	FragTrap : virtual public ClapTrap
 {
 	public :
 		FragTrap();
@@ -10,3 +13,5 @@ class	FragTrap : public ClapTrap
 		FragTrap	&operator=(FragTrap const & rhs);
 		void		highFivesGuys(void);
 };
+
+#endif
