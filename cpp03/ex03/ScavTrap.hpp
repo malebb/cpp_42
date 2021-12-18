@@ -2,6 +2,7 @@
 # define SCAVTRAP_H
 
 # include <iostream>
+
 # include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap

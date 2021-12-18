@@ -26,9 +26,9 @@ DiamondTrap::DiamondTrap(DiamondTrap const & src)
 DiamondTrap&	DiamondTrap::operator=(DiamondTrap const & rhs)
 {
 	this->_name = rhs._name;
-	this->FragTrap::_hit_points = rhs.FragTrap::_hit_points;
-	this->ScavTrap::_energy_points = rhs.ScavTrap::_energy_points;
-	this->FragTrap::_attack_damage = rhs.FragTrap::_attack_damage;
+	this->_hit_points = rhs._hit_points;
+	this->_energy_points = rhs._energy_points;
+	this->_attack_damage = rhs._attack_damage;
 	return (*this);
 }
 

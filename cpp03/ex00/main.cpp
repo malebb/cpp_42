@@ -2,19 +2,26 @@
 
 int	main(void)
 {
-	ClapTrap	joj("joj");
+	std::cout << "------------ClapTrap Test------------" << std::endl << std::endl;
 
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
+	ClapTrap		*joj = new ClapTrap("joj");
 
-	joj.takeDamage(10);
-	joj.takeDamage(10);
-	joj.beRepaired(10);
-	joj.takeDamage(5);
+	std::cout << std::endl;
 
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
+
+	joj->takeDamage(10);
+	joj->takeDamage(10);
+	joj->beRepaired(10);
+	joj->takeDamage(5);
+
+	std::cout << std::endl;
+	delete joj;
+	std::cout << std::endl;
 	return (0);
 }

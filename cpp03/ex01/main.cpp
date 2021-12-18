@@ -2,34 +2,44 @@
 
 int	main(void)
 {
-	ClapTrap	joj("joj");
-	ScavTrap	joblux("joblux");
+	std::cout << "------------ClapTrap Test------------" << std::endl << std::endl;
 
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-	joj.attack("joblux");
-
-	//ClapTrap outputs
-	joj.takeDamage(10);
-	joj.takeDamage(10);
-	joj.beRepaired(10);
-	joj.takeDamage(5);
+	ClapTrap		*joj = new ClapTrap("joj");
 
 	std::cout << std::endl;
 
-	//ScavTrap outputs
-	joblux.attack("un type");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
+	joj->attack("joblux");
 
-	joblux.takeDamage(50);
-	joblux.takeDamage(50);
-	joblux.takeDamage(5);
-	joblux.attack("joj");
+	joj->takeDamage(10);
+	joj->takeDamage(10);
+	joj->beRepaired(10);
+	joj->takeDamage(5);
 
-	joblux.guardGate();
+	std::cout << std::endl;
+	delete joj;
+	std::cout << std::endl;
 
+	std::cout << "------------ScavTrap Test------------" << std::endl << std::endl;
+
+	ScavTrap		*joblux = new ScavTrap("joblux");
+
+	std::cout << std::endl;
+
+	joblux->attack("un type");
+
+	joblux->guardGate();
+
+	joblux->takeDamage(50);
+	joblux->takeDamage(50);
+	joblux->takeDamage(5);
+
+	std::cout << std::endl;
+	delete joblux;
 	std::cout << std::endl;
 
 	return (0);

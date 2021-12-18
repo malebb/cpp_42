@@ -5,6 +5,7 @@
 int	main(void)
 {
 	std::cout << "------------ClapTrap Test------------" << std::endl << std::endl;
+
 	ClapTrap		*joj = new ClapTrap("joj");
 
 	std::cout << std::endl;
@@ -26,18 +27,19 @@ int	main(void)
 	std::cout << std::endl;
 
 	std::cout << "------------ScavTrap Test------------" << std::endl << std::endl;
+
 	ScavTrap		*joblux = new ScavTrap("joblux");
 
 	std::cout << std::endl;
 
 	joblux->attack("un type");
 
+	joblux->guardGate();
+
 	joblux->takeDamage(50);
 	joblux->takeDamage(50);
 	joblux->takeDamage(5);
-	joblux->attack("joj");
 
-	joblux->guardGate();
 	std::cout << std::endl;
 	delete joblux;
 	std::cout << std::endl;
@@ -50,18 +52,19 @@ int	main(void)
 
 	matheu->attack("un type");
 
+	matheu->highFivesGuys();
+
 	matheu->takeDamage(50);
 	matheu->takeDamage(50);
 	matheu->takeDamage(5);
-	matheu->attack("le mechant");
 
-	matheu->highFivesGuys();
 
 	std::cout << std::endl;
 	delete matheu;
 	std::cout << std::endl;
 
 	std::cout << "------------DiamondTrap Test------------" << std::endl << std::endl ;
+
 	DiamondTrap		*monster = new DiamondTrap("monster");
 
 	std::cout << std::endl;
@@ -71,6 +74,7 @@ int	main(void)
 	monster->takeDamage(50);
 	monster->takeDamage(50);
 	monster->takeDamage(50);
+
 	std::cout << std::endl;
 	delete monster;
 	std::cout << std::endl;
