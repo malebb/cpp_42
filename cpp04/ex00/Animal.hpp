@@ -10,7 +10,7 @@ class Animal
 		virtual ~Animal();
 		Animal(Animal const & src);
 		Animal&			operator=(Animal const & rhs);
-		virtual void		makeSound(void) const;
+		virtual void	makeSound(void) const;
 		std::string		getType(void) const;
 		Animal(std::string type);
 
