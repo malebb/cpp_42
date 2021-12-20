@@ -7,11 +7,12 @@ Cat::Cat() : Animal("Cat")
 
 Cat::~Cat()
 {
-	std::cout << "Bye animal" << std::endl;
+	std::cout << "Bye cat" << std::endl;
 }
 
 Cat::Cat(Cat const & cpy)
 {
+	std::cout << "Oh ! a cat !" << std::endl;
 	*this = cpy;
 }
 

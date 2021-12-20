@@ -12,6 +12,7 @@ Animal::~Animal()
 
 Animal::Animal(Animal const & cpy)
 {
+	std::cout << "Oh ! An animal !" << std::endl;
 	*this = cpy;
 }
 
