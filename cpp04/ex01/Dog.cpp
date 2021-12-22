@@ -22,7 +22,6 @@ Dog::Dog(Dog const & cpy)
 Dog&		Dog::operator=(Dog const & src)
 {
 	this->_type = src._type;
-	std::cout << "A brand new brain" << std::endl;
 	this->_brain = new Brain(*src._brain);
 	return (*this);
 }

@@ -21,7 +21,6 @@ Cat::Cat(Cat const & cpy)
 Cat&		Cat::operator=(Cat const & src)
 {
 	this->_type = src._type;
-	std::cout << "A brand new Brain" << std::endl;
 	this->_brain = new Brain(*src._brain);
 	return (*this);
 }

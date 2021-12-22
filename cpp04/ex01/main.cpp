@@ -39,8 +39,8 @@ int	main(void)
 
 	brain = cat.get_brain();
 	brain_2 = cat_2.get_brain();
-	brain->ideas[0] = "i am looking for a mouse";
-	brain_2->ideas[0] = "i am looking for water";
+	brain->ideas[0] = "I am looking for a mouse";
+	brain_2->ideas[0] = "I am looking for water";
 
 	std::cout << "First cat's brain : " << brain << " has an ideas : "
 		<< brain->ideas[0] << std::endl;

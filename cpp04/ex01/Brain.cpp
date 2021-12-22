@@ -14,6 +14,7 @@ Brain::~Brain()
 
 Brain::Brain(Brain const & src)
 {
+	std::cout << "A brand new brain" << std::endl;
 	*this = src;
 }
 

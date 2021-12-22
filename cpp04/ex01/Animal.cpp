@@ -23,7 +23,6 @@ Animal::Animal(std::string type) : _type(type)
 
 Animal&		Animal::operator=(Animal const & src)
 {
-	std::cout << "Animal operator =" << std::endl;
 	this->_type = src._type;
 	return (*this);
 }
