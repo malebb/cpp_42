@@ -8,10 +8,7 @@
 
 int	main(void)
 {
-	
 	const Animal	*animals[NB_ANIMAL];
-	Brain			*brain;
-	Brain			*brain_2;
 
 	for (int i = 0; i < NB_ANIMAL; i++)
 	{
@@ -34,11 +31,15 @@ int	main(void)
 
 	std::cout << std::endl;
 
-	const Cat cat = Cat();
-	const Cat cat_2 = Cat(cat);
+	const Cat *cat = new Cat();
+	const Cat *cat_2 = new Cat(*cat);
+	Brain			*brain;
+	Brain			*brain_2;
 
-	brain = cat.get_brain();
-	brain_2 = cat_2.get_brain();
+	std::cout << std::endl;
+
+	brain = cat->get_brain();
+	brain_2 = cat_2->get_brain();
 	brain->ideas[0] = "I am looking for a mouse";
 	brain_2->ideas[0] = "I am looking for water";
 
@@ -46,7 +47,21 @@ int	main(void)
 		<< brain->ideas[0] << std::endl;
 	std::cout << "Second cat's brain : " << brain_2 << " has an ideas : "
 		<< brain_2->ideas[0] << std::endl;
+
 	std::cout << std::endl;
+
+	delete cat;
+	delete cat_2;
+
+	std::cout << std::endl;
+
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
+
+	std::cout << std::endl;
+
+	delete j;
+	delete i;
 
 	return (0);
 }
