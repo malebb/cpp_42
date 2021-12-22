@@ -1,0 +1,52 @@
+#include "Animal.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+
+# define NB_ANIMAL 6
+
+int	main(void)
+{
+	
+	const Animal	*animals[NB_ANIMAL];
+	Brain			*brain;
+	Brain			*brain_2;
+
+	for (int i = 0; i < NB_ANIMAL; i++)
+	{
+		if ((i % 2) == 0)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat();
+	}
+
+	std::cout << std::endl;
+
+	for (int i = 0; i < NB_ANIMAL; i++)
+		std::cout << "Animal " << i + 1 << " is a " << animals[i]->getType()
+			<< std::endl;
+
+	std::cout << std::endl;
+
+	for (int i = 0; i < NB_ANIMAL; i++)
+		delete (animals[i]);
+
+	std::cout << std::endl;
+
+	const Cat cat = Cat();
+	const Cat cat_2 = Cat(cat);
+
+	brain = cat.get_brain();
+	brain_2 = cat_2.get_brain();
+	brain->ideas[0] = "i am looking for a mouse";
+	brain_2->ideas[0] = "i am looking for water";
+
+	std::cout << "First cat's brain : " << brain << " has an ideas : "
+		<< brain->ideas[0] << std::endl;
+	std::cout << "Second cat's brain : " << brain_2 << " has an ideas : "
+		<< brain_2->ideas[0] << std::endl;
+	std::cout << std::endl;
+
+	return (0);
+}
