@@ -59,6 +59,6 @@ AMateria*		MateriaSource::createMateria(std::string const * type)
 				&& (this->_learnt_materia[i]->getType().compare(*type)) == 0)
 			return (this->_learnt_materia[i]->clone());
 	}
-	std::cout << "Type \"" << type << "\" is unknown" << std::endl;
+	std::cout << "Type \"" << *type << "\" is unknown" << std::endl;
 	return (0);
 }

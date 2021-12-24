@@ -15,7 +15,6 @@ Character::~Character()
 		if (this->_inventory[i])
 			delete this->_inventory[i];
 	}
-
 }
 
 Character::Character(Character const & src)
@@ -41,7 +40,10 @@ Character&		Character::operator=(Character const & rhs)
 
 Character::Character(std::string name) : _name(name)
 {
-
+	for (int i = 0; i < 4; i++)
+	{
+		this->_inventory[i] = NULL;
+	}
 }
 
 std::string const & 	Character::getName() const
