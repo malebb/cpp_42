@@ -1,6 +1,12 @@
 #ifndef IMateriaSource_HPP
 # define IMateriaSource_HPP
 
+# include <iostream>
+
+# include "AMateria.hpp"
+
+class MateriaSource;
+
 class IMateriaSource
 {
 	public :

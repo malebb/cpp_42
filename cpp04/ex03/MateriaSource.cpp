@@ -1,3 +1,5 @@
+#include "MateriaSource.hpp"
+
 MateriaSource::MateriaSource()
 {
 	for (int i = 0; i < 4; i++)
@@ -21,6 +23,14 @@ MateriaSource::MateriaSource(MateriaSource const & src)
 
 MateriaSource&		MateriaSource::operator=(MateriaSource const & rhs)
 {
+	for (int i = 0; i < 4; i++)
+	{
+		if (rhs._learnt_materia[i] != NULL)
+			this->_learnt_materia[i] = rhs._learnt_materia[i]->clone();
+		else
+			this->_learnt_materia[i] = rhs._learnt_materia[i];
+			
+	}
 	return (*this);
 }
 
@@ -29,8 +39,10 @@ void				MateriaSource::learnMateria(AMateria *materia)
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_learnt_materia[i] == NULL)
+		{
 			this->_learnt_materia[i] = materia;
-		break;
+			break;
+		}
 	}
 }
 
@@ -38,8 +50,9 @@ AMateria*		MateriaSource::createMateria(std::string const * type)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->_learnt_materia[i]->getType() == type)
-			return (new AMateria(this->_learnt_materia[i]));
+		if (this ->_learnt_materia[i]
+				&& (this->_learnt_materia[i]->getType().compare(*type)) == 0)
+			return (this->_learnt_materia[i]->clone());
 	}
 	return (0);
 }

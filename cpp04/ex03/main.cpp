@@ -6,6 +6,8 @@
 
 int	main(void)
 {
+	std::string		materia;
+
 	IMateriaSource* src = new MateriaSource();
 
 	src->learnMateria(new Ice());
@@ -14,9 +16,11 @@ int	main(void)
 	ICharacter* me = new Character("me");
 
 	AMateria* tmp;
-	tmp = src->createMateria("ice");
+	materia = "ice";
+	tmp = src->createMateria(&materia);
 	me->equip(tmp);
-	tmp = src->createMateria("cure");
+	materia = "cure";
+	tmp = src->createMateria(&materia);
 	me->equip(tmp);
 
 	ICharacter* bob = new Character("bob");

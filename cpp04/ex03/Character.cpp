@@ -6,17 +6,14 @@ Character::Character()
 	{
 		this->_inventory[i] = NULL;
 	}
-	std::cout << "Oh ! A character !" << std::endl;
 }
 
 Character::~Character()
 {
-	std::cout << "Bye character !" << std::endl;
 }
 
 Character::Character(Character const & src)
 {
-	std::cout << "Oh ! A character !" << std::endl;
 	*this = src;
 }
 
@@ -26,12 +23,12 @@ Character&		Character::operator=(Character const & rhs)
 	return (*this);
 }
 
-Character::Character(std::string name) _name(name)
+Character::Character(std::string name) : _name(name)
 {
 
 }
 
-std::string const & 	getName() const
+std::string const & 	Character::getName() const
 {
 	return (this->_name);
 }
