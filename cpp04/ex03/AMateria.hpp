@@ -13,12 +13,12 @@ class AMateria
 		AMateria(AMateria const & src);
 		AMateria&				operator=(AMateria const & rhs);
 		AMateria(std::string const & type);
-		std::string const & 	getType();
+		std::string const & 	getType() const;
 		virtual AMateria* 		clone() const = 0;
 		virtual void 			use(ICharacter& target);
 	
 	protected :
-		std::string		_type;
+		const std::string	_type;
 };
 
 #endif

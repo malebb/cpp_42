@@ -15,13 +15,15 @@ Ice::Ice(Ice const & src)
 
 Ice&			Ice::operator=(Ice const & rhs)
 {
-	this->_type = rhs._type;
+	(void)rhs;
+
 	return (*this);
 }
 
 void			Ice::use(ICharacter &target)
 {
-	std::cout << "* shoots an ice bolt at " << target.getName() << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *"
+		<< std::endl;
 }
 
 AMateria*		Ice::clone() const

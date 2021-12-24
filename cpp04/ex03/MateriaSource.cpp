@@ -26,7 +26,10 @@ MateriaSource&		MateriaSource::operator=(MateriaSource const & rhs)
 	for (int i = 0; i < 4; i++)
 	{
 		if (rhs._learnt_materia[i] != NULL)
+		{
+			delete this->_learnt_materia[i];
 			this->_learnt_materia[i] = rhs._learnt_materia[i]->clone();
+		}
 		else
 			this->_learnt_materia[i] = rhs._learnt_materia[i];
 			
@@ -41,9 +44,11 @@ void				MateriaSource::learnMateria(AMateria *materia)
 		if (this->_learnt_materia[i] == NULL)
 		{
 			this->_learnt_materia[i] = materia;
-			break;
+			return ;
 		}
 	}
+	std::cout << "Inventory is full" << std::endl;
+	delete materia;
 }
 
 AMateria*		MateriaSource::createMateria(std::string const * type)
@@ -54,5 +59,6 @@ AMateria*		MateriaSource::createMateria(std::string const * type)
 				&& (this->_learnt_materia[i]->getType().compare(*type)) == 0)
 			return (this->_learnt_materia[i]->clone());
 	}
+	std::cout << "Type \"" << type << "\" is unknown" << std::endl;
 	return (0);
 }

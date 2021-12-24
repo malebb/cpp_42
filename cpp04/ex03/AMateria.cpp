@@ -15,7 +15,7 @@ AMateria::AMateria(AMateria const & src)
 
 AMateria&		AMateria::operator=(AMateria const & rhs)
 {
-	this->_type = rhs._type;
+	(void)rhs;
 	return (*this);
 }
 
@@ -28,7 +28,7 @@ void			AMateria::use(ICharacter& target)
 	std::cout << "* nothing happend to " << target.getName() << " *" << std::endl;
 }
 
-std::string const & 	AMateria::getType()
+std::string const & 	AMateria::getType() const
 {
 	return (this->_type);
 }
