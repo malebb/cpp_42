@@ -25,15 +25,15 @@ class Bureaucrat
 		~Bureaucrat();
 		Bureaucrat(Bureaucrat const & src);
 		Bureaucrat&			operator=(Bureaucrat const & rhs);
-		Bureaucrat(std::string name, unsigned int grade);
+		Bureaucrat(std::string name, int grade);
 		std::string			getName(void) const;
-		unsigned int		getGrade(void) const;
+		int					getGrade(void) const;
 		void				increase_grade(void);
 		void				decrease_grade(void);
 
 	protected :
-		std::string		_name;
-		unsigned int	_grade;
+		std::string const		_name;
+		int						_grade;
 
 };
 

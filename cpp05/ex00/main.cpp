@@ -43,5 +43,29 @@ int	main(void)
 	}
 
 	delete dylan;
+
+	std::cout << std::endl;
+	std::cout << "------------ Test invalid contructor value ------------" << std::endl;
+	std::cout << std::endl;
+
+	try
+	{
+		Bureaucrat		*uncle = new Bureaucrat("uncle", 1000);
+		std::cout << *uncle;
+	}
+	catch (std::exception const & e)
+	{
+		std::cout << e.what();
+	}
+
+	try
+	{
+		Bureaucrat		*uncle = new Bureaucrat("uncle", 0);
+		std::cout << *uncle;
+	}
+	catch (std::exception const & e)
+	{
+		std::cout << e.what();
+	}
 	return (0);
 }
