@@ -78,4 +78,3 @@ Bureaucrat::GradeTooHighException::GradeTooHighException()
 Bureaucrat::GradeTooLowException::GradeTooLowException()
 {
 }
-
