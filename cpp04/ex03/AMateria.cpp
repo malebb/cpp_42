@@ -8,7 +8,7 @@ AMateria::~AMateria()
 {
 }
 
-AMateria::AMateria(AMateria const & src)
+AMateria::AMateria(AMateria const & src) : _type(src._type)
 {
 	*this = src;
 }
