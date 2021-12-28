@@ -4,6 +4,8 @@
 #include <iostream>
 #include <exception>
 
+class Form;
+
 class Bureaucrat
 {
 
@@ -30,6 +32,7 @@ class Bureaucrat
 		int					getGrade(void) const;
 		void				increase_grade(void);
 		void				decrease_grade(void);
+		void				signForm(Form & form);
 
 	protected :
 		const std::string		_name;
