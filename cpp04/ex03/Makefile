@@ -8,7 +8,7 @@ CC = clang++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = animal_interface
+NAME = materia
 RM	= rm -rf
 
 .PHONY:		all

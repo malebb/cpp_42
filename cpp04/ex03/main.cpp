@@ -40,35 +40,50 @@ int	main(void)
 	std::cout << std::endl;
 
 	MateriaSource* s = new MateriaSource();
-	MateriaSource* s2 = new MateriaSource();
 
 	ICharacter* joj = new Character("joj");
 	ICharacter* joblux = new Character("joblux");
+	AMateria*		tmp_materia;
 
-	s->learnMateria(new Ice());
-	s->learnMateria(new Ice());
-	s->learnMateria(new Ice());
-	s2->learnMateria(new Cure());
-	s->learnMateria(new Ice());
-	s->learnMateria(new Ice()); //inventory is full
+	for (int i = 0; i < 4; i++)
+	{
+		if ((i % 2) == 0)
+			tmp_materia = new Ice();
+		else
+			tmp_materia = new Cure();
+		s->learnMateria(tmp_materia);
+	}
+	tmp_materia = new Ice();
+	s->learnMateria(tmp_materia); //inventory is full
+	delete tmp_materia;
 
 	std::cout << std::endl;
 
 	materia = "fire";
-	AMateria* ice = s->createMateria(&materia);
+	AMateria* fire = s->createMateria(&materia);
+	(void)fire;	
+
+	std::cout << std::endl;
+
 	materia = "ice";
-	ice = s->createMateria(&materia);
+	AMateria* ice = s->createMateria(&materia);
+
 	joj->equip(ice);
 	joj->use(0, *joblux);
 	joj->use(9, *joblux);
 	joj->use(1, *joblux);
+
 	materia = "cure";
-	AMateria* cure = s2->createMateria(&materia);
+	AMateria* cure = s->createMateria(&materia);
+
 	joj->equip(cure);
 	joj->use(1, *joblux);
+	joj->unequip(1);
+
+	joblux->equip(cure);
+	joblux->use(0, *joj);
 
 	delete s;
-	delete s2;
 	delete joj;
 	delete joblux;
 
