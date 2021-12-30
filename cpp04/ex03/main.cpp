@@ -43,6 +43,7 @@ int	main(void)
 
 	ICharacter* joj = new Character("joj");
 	ICharacter* joblux = new Character("joblux");
+
 	AMateria*		tmp_materia;
 
 	for (int i = 0; i < 4; i++)
