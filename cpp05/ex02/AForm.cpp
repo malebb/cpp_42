@@ -44,7 +44,7 @@ const char *		AForm::GradeTooHighException::what() const throw()
 
 const char *		AForm::NotSignedFormException::what() const throw()
 {
-	return ("Grade is too high, maximum is 1\n");
+	return ("Form is not signed yet\n");
 }
 
 AForm::GradeTooHighException::GradeTooHighException()
@@ -114,17 +114,10 @@ void				AForm::setTarget(std::string target)
 
 void			AForm::execute(Bureaucrat const & executor) const
 {
-	try
-	{
-		if (!this->getSigned())
-			throw(NotSignedFormException());
-		if (executor.getGrade() <= this->getGradeToExecute())
-			this->action();
-		else
-			throw(GradeTooLowException());
-	}
-	catch (std::exception const & e)
-	{
-
-	}
+	if (!this->getSigned())
+		throw(NotSignedFormException());
+	if (executor.getGrade() <= this->getGradeToExecute())
+		this->action();
+	else
+		throw(GradeTooLowException());
 }

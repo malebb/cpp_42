@@ -4,7 +4,7 @@
 
 int	main(void)
 {
-	/*
+/*	
 	std::cout << std::endl;
 	std::cout << "------------ TEST BUREAUCRAT CLASS ------------" << std::endl;
 	std::cout << std::endl;
@@ -131,12 +131,14 @@ int	main(void)
 	{
 		std::cout << e.what();
 	}
-
+*/
 	ShrubberyCreationForm		*tree = new ShrubberyCreationForm("tree1");
 	Bureaucrat					*joj = new Bureaucrat("joj", 1);
 
+	joj->signForm(*tree);
 	joj->executeForm(*tree);
 	delete tree;
 	delete joj;
+
 	return (0);
 }

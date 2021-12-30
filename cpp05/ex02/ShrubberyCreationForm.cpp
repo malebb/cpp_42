@@ -29,5 +29,13 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubb
 
 void	ShrubberyCreationForm::action() const
 {
-	std::cout << this->getTarget();
+	std::ofstream		shrubbery_file;
+
+	shrubbery_file.open((this->getTarget() + "_shrubbery").c_str());
+	shrubbery_file << "  /\\" << std::endl;
+	shrubbery_file << "|    |" << std::endl;
+	shrubbery_file << "------" << std::endl;
+	shrubbery_file << "  ||" << std::endl;
+	shrubbery_file << "  ||" << std::endl;
+	shrubbery_file << "  ||" << std::endl;
 }
