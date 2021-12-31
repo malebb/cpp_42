@@ -1,7 +1,10 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-#include "AForm.hpp"
+# include "AForm.hpp"
+# include <time.h>
+# include <stdlib.h>
+
 
 class RobotomyRequestForm : public AForm
 {
