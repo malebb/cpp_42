@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int	main(void)
 {
@@ -132,11 +133,14 @@ int	main(void)
 		std::cout << e.what();
 	}
 */
-	ShrubberyCreationForm		*tree = new ShrubberyCreationForm("tree1");
+	RobotomyRequestForm			*robotomy = new RobotomyRequestForm("robotomy");
+	ShrubberyCreationForm		*tree = new ShrubberyCreationForm("tree");
 	Bureaucrat					*joj = new Bureaucrat("joj", 1);
 
 	joj->signForm(*tree);
+	joj->signForm(*robotomy);
 	joj->executeForm(*tree);
+	joj->executeForm(*robotomy);
 	delete tree;
 	delete joj;
 

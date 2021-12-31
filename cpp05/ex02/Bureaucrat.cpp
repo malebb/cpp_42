@@ -100,7 +100,7 @@ void			Bureaucrat::executeForm(AForm const & form)
 	try
 	{
 		form.execute(*this);
-		std::cout << "Bureaucrat " << this->getName() << " executes "
+		std::cout << "Bureaucrat " << this->getName() << " has executed "
 			<< form.getName() << std::endl;
 	}
 	catch (std::exception const & e)
