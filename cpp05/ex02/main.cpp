@@ -2,6 +2,7 @@
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 #include <unistd.h>
 int	main(void)
@@ -135,13 +136,16 @@ int	main(void)
 	}
 */
 	RobotomyRequestForm			*robotomy = new RobotomyRequestForm("robotomy");
+	PresidentialPardonForm		*presidential = new PresidentialPardonForm("joj");
 	ShrubberyCreationForm		*tree = new ShrubberyCreationForm("tree");
 	Bureaucrat					*joj = new Bureaucrat("joj", 1);
 
 	joj->signForm(*tree);
 	joj->signForm(*robotomy);
+	joj->signForm(*presidential);
 	joj->executeForm(*tree);
 	joj->executeForm(*robotomy);
+	joj->executeForm(*presidential);
 
 	delete tree;
 	delete joj;
