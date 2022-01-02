@@ -106,7 +106,7 @@ void			Bureaucrat::executeForm(AForm const & form)
 	catch (std::exception const & e)
 	{
 		std::cout << "Bureaucrat " << this->getName() << " cannot execute "
-			<< form.getName() << " because " << e.what() << std::endl;
+			<< form.getName() << " because " << e.what();
 	}
 }
 

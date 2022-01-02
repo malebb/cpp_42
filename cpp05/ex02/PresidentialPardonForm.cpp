@@ -1,8 +1,7 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential pardon", 72, 45)
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential pardon", 25, 5)
 {
-	srand(time(NULL));
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
@@ -12,21 +11,20 @@ PresidentialPardonForm::~PresidentialPardonForm()
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const & src)
 	: AForm(src.getName(), src.getGradeToSign(), src.getGradeToExecute())
 {
-	srand(time(NULL));
 	*this = src;
 }
 
 PresidentialPardonForm&		PresidentialPardonForm::operator=
 			(PresidentialPardonForm const & rhs)
 {
-	(void)rhs;
+	this->setSigned(rhs.getSigned());
+	this->setTarget(rhs.getTarget());
 	return (*this);
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-	: AForm("Presidential pardon", 72, 45)
+	: AForm("Presidential pardon", 25, 5)
 {
-	srand(time(NULL));
 	this->setTarget(target);
 }
 

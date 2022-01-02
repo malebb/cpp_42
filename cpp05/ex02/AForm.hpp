@@ -26,6 +26,12 @@ class AForm
 				NotSignedFormException();
 				virtual const char * what() const throw();
 		};
+		class GradeRequiredException : public std::exception
+		{
+			public :
+				GradeRequiredException();
+				virtual const char * what() const throw();
+		};
 		AForm();
 		~AForm();
 		AForm(AForm const & src);
@@ -38,6 +44,7 @@ class AForm
 		int				getGradeToExecute(void) const;
 		std::string		getTarget(void) const;
 		void			setTarget(std::string target);
+		void			setSigned(int signed_value);
 		void			execute(Bureaucrat const & executor) const;
 		virtual void	action() const = 0;
 	

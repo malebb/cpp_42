@@ -18,7 +18,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src)
 ShrubberyCreationForm&		ShrubberyCreationForm::operator=
 			(ShrubberyCreationForm const & rhs)
 {
-	(void)rhs;
+	this->setSigned(rhs.getSigned());
+	this->setTarget(rhs.getTarget());
 	return (*this);
 }
 
@@ -32,10 +33,13 @@ void	ShrubberyCreationForm::action() const
 	std::ofstream		shrubbery_file;
 
 	shrubbery_file.open((this->getTarget() + "_shrubbery").c_str());
-	shrubbery_file << "  /\\" << std::endl;
-	shrubbery_file << "|    |" << std::endl;
-	shrubbery_file << "------" << std::endl;
-	shrubbery_file << "  ||" << std::endl;
-	shrubbery_file << "  ||" << std::endl;
-	shrubbery_file << "  ||" << std::endl;
+
+	shrubbery_file << "  /\\         /\\" << std::endl;
+	shrubbery_file << "|    |     |    |" << std::endl;
+	shrubbery_file << "------     ------" << std::endl;
+	shrubbery_file << "  ||         ||" << std::endl;
+	shrubbery_file << "  ||         ||" << std::endl;
+	shrubbery_file << "  ||         ||" << std::endl;
+
+	shrubbery_file.close();
 }

@@ -19,6 +19,7 @@ AForm::AForm(AForm const & src): _name(src._name), _grade_to_sign(src._grade_to_
 AForm&		AForm::operator=(AForm const & rhs)
 {
 	this->_signed = rhs._signed;
+	this->_target = rhs._target;
 	return (*this);
 }
 
@@ -47,6 +48,11 @@ const char *		AForm::NotSignedFormException::what() const throw()
 	return ("Form is not signed yet\n");
 }
 
+const char *		AForm::GradeRequiredException::what() const throw()
+{
+	return ("Bureaucrat grade is to low to execute form\n");
+}
+
 AForm::GradeTooHighException::GradeTooHighException()
 {
 
@@ -58,6 +64,11 @@ AForm::GradeTooLowException::GradeTooLowException()
 }
 
 AForm::NotSignedFormException::NotSignedFormException()
+{
+
+}
+
+AForm::GradeRequiredException::GradeRequiredException()
 {
 
 }
@@ -97,7 +108,7 @@ std::string			AForm::getTarget(void) const
 
 std::ostream&		operator<<(std::ostream & o, AForm const & rhs)
 {
-	o << "AForm " << rhs.getName();
+	o << "Form " << rhs.getName();
 	if (rhs.getSigned())
 		o << " is signed ";
 	else
@@ -112,6 +123,11 @@ void				AForm::setTarget(std::string target)
 	this->_target = target;
 }
 
+void				AForm::setSigned(int signed_value)
+{
+	this->_signed = signed_value;
+}
+
 void			AForm::execute(Bureaucrat const & executor) const
 {
 	if (!this->getSigned())
@@ -119,5 +135,5 @@ void			AForm::execute(Bureaucrat const & executor) const
 	if (executor.getGrade() <= this->getGradeToExecute())
 		this->action();
 	else
-		throw(GradeTooLowException());
+		throw(GradeRequiredException());
 }
