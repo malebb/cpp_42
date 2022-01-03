@@ -21,7 +21,7 @@ class Form
 				virtual const char * what() const throw();
 		};
 		Form();
-		~Form();
+		virtual ~Form();
 		Form(Form const & src);
 		Form&			operator=(Form const & rhs);
 		Form(std::string name, const int grade_to_sign, const int grade_to_execute);

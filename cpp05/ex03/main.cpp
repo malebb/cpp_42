@@ -1,5 +1,6 @@
 #include "AForm.hpp"
 #include "Intern.hpp"
+#include "Bureaucrat.hpp"
 
 int	main(void)
 {
@@ -9,11 +10,15 @@ int	main(void)
 
 	Intern			joj;
 	AForm			*form;
+	Bureaucrat		joblux("joblux", 1);
 
 	try
-	{	
-		form = joj.makeForm("robotomy request", "joblux");
+	{
+		form = joj.makeForm("presidential pardon", "joblux");
 		std::cout << *form;
+		joblux.signForm(*form);
+		joblux.executeForm(*form);
+		delete form;
 	}
 	catch(std::exception const & e)
 	{
@@ -24,6 +29,7 @@ int	main(void)
 	{	
 		form = joj.makeForm("wrong request", "joblux");
 		std::cout << *form;
+		delete form;
 	}
 	catch(std::exception const & e)
 	{

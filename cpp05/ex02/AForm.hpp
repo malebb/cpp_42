@@ -33,7 +33,7 @@ class AForm
 				virtual const char * what() const throw();
 		};
 		AForm();
-		~AForm();
+		virtual ~AForm();
 		AForm(AForm const & src);
 		AForm&			operator=(AForm const & rhs);
 		AForm(std::string name, const int grade_to_sign, const int grade_to_execute);

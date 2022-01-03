@@ -10,43 +10,39 @@ int	main(void)
 	std::cout << "------------ Test upper limit ------------" << std::endl;
 	std::cout << std::endl;
 
-	Bureaucrat		*maleb = new Bureaucrat("maleb", 3);
+	Bureaucrat		maleb("maleb", 3);
 
 	for (int i = 0; i < 3; i++)
 	{
 		try
 		{
-			maleb->increase_grade();
-			std::cout << *maleb;
+			maleb.increase_grade();
+			std::cout << maleb;
 		}
 		catch (std::exception const & e)
 		{
 			std::cout << e.what();
 		}
 	}
-
-	delete maleb;
 
 	std::cout << std::endl;
 	std::cout << "------------ Test lower limit ------------" << std::endl;
 	std::cout << std::endl;
 
-	Bureaucrat		*dylan = new Bureaucrat("dylan", 148);
+	Bureaucrat		dylan("dylan", 148);
 
 	for (int i = 0; i < 3; i++)
 	{
 		try
 		{
-			dylan->decrease_grade();
-			std::cout << *dylan;
+			dylan.decrease_grade();
+			std::cout << dylan;
 		}
 		catch (std::exception const & e)
 		{
 			std::cout << e.what();
 		}
 	}
-
-	delete dylan;
 
 	std::cout << std::endl;
 	std::cout << "------------ Test invalid contructor value ------------" << std::endl;
@@ -54,8 +50,8 @@ int	main(void)
 
 	try
 	{
-		Bureaucrat		*uncle = new Bureaucrat("uncle", 1000);
-		std::cout << *uncle;
+		Bureaucrat		uncle("uncle", 1000);
+		std::cout << uncle;
 	}
 	catch (std::exception const & e)
 	{
@@ -64,8 +60,8 @@ int	main(void)
 
 	try
 	{
-		Bureaucrat		*uncle = new Bureaucrat("uncle", 0);
-		std::cout << *uncle;
+		Bureaucrat		uncle("uncle", 0);
+		std::cout << uncle;
 	}
 	catch (std::exception const & e)
 	{
@@ -80,15 +76,15 @@ int	main(void)
 	std::cout << std::endl;
 	try
 	{
-		Bureaucrat		*goodGuy = new Bureaucrat("good guy", 31);
-		Form			*plantTree = new Form("plant tree", 30, 40);
+		Bureaucrat		goodGuy("good guy", 31);
+		Form			plantTree("plant tree", 30, 40);
 
-		std::cout << *goodGuy << std::endl;
-		goodGuy->signForm(*plantTree);
-		goodGuy->increase_grade();
-		std::cout << *goodGuy << std::endl;
-		goodGuy->signForm(*plantTree);
-		std::cout << *plantTree << std::endl;
+		std::cout << goodGuy << std::endl;
+		goodGuy.signForm(plantTree);
+		goodGuy.increase_grade();
+		std::cout << goodGuy << std::endl;
+		goodGuy.signForm(plantTree);
+		std::cout << plantTree << std::endl;
 	}
 	catch (std::exception const & e)
 	{

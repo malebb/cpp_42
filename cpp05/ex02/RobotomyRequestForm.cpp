@@ -1,6 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy request", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm() : AForm("robotomy request", 72, 45)
 {
 	srand(time(NULL));
 }
@@ -25,7 +25,7 @@ RobotomyRequestForm&		RobotomyRequestForm::operator=
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
-	: AForm("Robotomy request", 72, 45)
+	: AForm("robotomy request", 72, 45)
 {
 	srand(time(NULL));
 	this->setTarget(target);

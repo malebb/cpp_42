@@ -2,9 +2,6 @@
 # define PRESIDENTIALPARDONFORM_HPP
 
 # include "AForm.hpp"
-# include <time.h>
-# include <stdlib.h>
-
 
 class PresidentialPardonForm : public AForm
 {

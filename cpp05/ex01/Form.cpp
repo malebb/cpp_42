@@ -34,12 +34,12 @@ Form::Form(std::string name, const int grade_to_sign,
 
 const char *		Form::GradeTooLowException::what() const throw()
 {
-	return ("Grade is too low, minimum is 150\n");
+	return ("Grade is too low\n");
 }
 
 const char *		Form::GradeTooHighException::what() const throw()
 {
-	return ("Grade is too high, maximum is 1\n");
+	return ("Grade is too high\n");
 }
 
 Form::GradeTooHighException::GradeTooHighException()

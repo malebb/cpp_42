@@ -1,6 +1,6 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential pardon", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm() : AForm("presidential pardon", 25, 5)
 {
 }
 
@@ -23,7 +23,7 @@ PresidentialPardonForm&		PresidentialPardonForm::operator=
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-	: AForm("Presidential pardon", 25, 5)
+	: AForm("presidential pardon", 25, 5)
 {
 	this->setTarget(target);
 }
