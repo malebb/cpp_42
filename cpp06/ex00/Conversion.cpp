@@ -59,12 +59,12 @@ int				Conversion::get_int_rep(void) const
 
 float			Conversion::get_float_rep(void) const
 {
-	return (this->_float_rep);
+	return (static_cast<float>(this->_float_rep));
 }
 
 double			Conversion::get_double_rep(void) const
 {
-	return (this->_double_rep);
+	return (static_cast<double>(this->_double_rep));
 }
 
 void			Conversion::convert_from_char(std::string & s_rep)
