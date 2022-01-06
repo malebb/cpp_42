@@ -1,7 +1,7 @@
 #include "Conversion.hpp"
 
 Conversion::Conversion() : _char_rep('0'), _int_rep(0), _float_rep(0),
-			_double_rep(0)
+			_double_rep(0), _point(false)
 {
 }
 
@@ -25,7 +25,7 @@ static bool		is_number(std::string & s_rep)
 	return (true);
 }
 
-Conversion::Conversion(std::string & s_rep)
+Conversion::Conversion(std::string & s_rep) : _point(false)
 {
 	if (is_number(s_rep))
 		this->convert_from_int(s_rep);
@@ -59,16 +59,22 @@ int				Conversion::get_int_rep(void) const
 
 float			Conversion::get_float_rep(void) const
 {
-	return (static_cast<float>(this->_float_rep));
+	return (this->_float_rep);
 }
 
 double			Conversion::get_double_rep(void) const
 {
-	return (static_cast<double>(this->_double_rep));
+	return (this->_double_rep);
+}
+
+bool			Conversion::get_point(void) const
+{
+	return (this->_point);
 }
 
 void			Conversion::convert_from_char(std::string & s_rep)
 {
+	this->_point = true;
 	this->_char_rep = s_rep[0];
 	this->_int_rep = static_cast<int>(this->_char_rep);
 	this->_double_rep = static_cast<double>(this->_char_rep);
@@ -77,10 +83,11 @@ void			Conversion::convert_from_char(std::string & s_rep)
 
 void			Conversion::convert_from_int(std::string & s_rep)
 {
+	this->_point = true;
 	this->_int_rep = atoi(s_rep.c_str());
 	this->_double_rep = static_cast<double>(this->_int_rep);
 	this->_float_rep = static_cast<float>(this->_int_rep);
-	this->_char_rep = static_cast<char>(this->_char_rep);
+	this->_char_rep = static_cast<char>(this->_int_rep);
 }
 
 void			Conversion::convert_from_float(std::string & s_rep)
@@ -89,6 +96,8 @@ void			Conversion::convert_from_float(std::string & s_rep)
 	this->_char_rep = static_cast<char>(this->_float_rep);
 	this->_int_rep = static_cast<int>(this->_float_rep);
 	this->_double_rep = static_cast<double>(this->_float_rep);
+	if (this->_float_rep == static_cast<int>(this->_float_rep))
+		this->_point = true;
 }
 
 void			Conversion::convert_from_double(std::string & s_rep)
@@ -97,14 +106,23 @@ void			Conversion::convert_from_double(std::string & s_rep)
 	this->_float_rep = static_cast<float>(this->_double_rep);
 	this->_int_rep = static_cast<int>(this->_double_rep);
 	this->_char_rep = static_cast<char>(this->_double_rep);
+	if (this->_double_rep == static_cast<int>(this->_double_rep))
+		this->_point = true;
 }
-
 std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
 {
 	o << "char: " << rhs.get_char_rep() << std::endl;
 	o << "int: " << rhs.get_int_rep() << std::endl;
-	o << "float: " << rhs.get_float_rep() << std::endl;
-	o << "double: " << rhs.get_double_rep() << std::endl;
+
+	o << "float: " << rhs.get_float_rep();
+	if (rhs.get_point())
+		o << ".0";
+	o << std::endl;
+
+	o << "double: " << rhs.get_double_rep();
+	if (rhs.get_point())
+		o << ".0";
+	o << std::endl;
 	return (o);
 }
 

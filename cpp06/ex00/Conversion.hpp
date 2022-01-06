@@ -17,6 +17,7 @@ class Conversion
 		int				get_int_rep(void) const;
 		float			get_float_rep(void) const;
 		double			get_double_rep(void) const;
+		bool			get_point(void) const;
 		void			convert_from_char(std::string & s_rep);
 		void			convert_from_int(std::string & s_rep);
 		void			convert_from_float(std::string & s_rep);
@@ -27,6 +28,7 @@ class Conversion
 		int			_int_rep;
 		float		_float_rep;
 		double		_double_rep;
+		bool		_point;
 };
 
 std::ostream&		operator<<(std::ostream & o, Conversion const & rhs);
