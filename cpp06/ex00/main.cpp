@@ -14,6 +14,7 @@ int	main(int argc, char **argv)
 	}
 	str = argv[1];
 	conv = new Conversion(str);
-	std::cout << *conv << std::endl;
+
+	std::cout << *conv;
 	return (0);
 }
