@@ -25,6 +25,27 @@ static bool		is_number(std::string & s_rep)
 	}
 	return (true);
 }
+/*
+static bool		is_float_valid(std::string & s_rep)
+{
+
+	for (int i = 0; i < static_cast<int>(s_rep.length()); i++)
+	{
+		if (i != 0)
+			if (s_rep[i] == '-')
+				return (false);
+	}
+	return (true);
+}
+
+static bool		is_double_valid(std::string & s_rep)
+{
+	for (int i = 0; i < static_cast<int>(s_rep.length()); i++)
+	{
+	}
+	return (true);
+}
+*/
 
 Conversion::Conversion(std::string & s_rep)
 {
@@ -43,6 +64,8 @@ Conversion::Conversion(std::string & s_rep)
 		this->convert_from_float(s_rep);
 	else if (s_rep.find(".") != std::string::npos)
 		this->convert_from_double(s_rep);
+	else
+		this->_error = true;
 }
 
 Conversion&		Conversion::operator=(Conversion const & rhs)
@@ -89,9 +112,9 @@ bool			Conversion::get_nan(void) const
 	return (this->_nan);
 }
 
-bool			Conversion::get_overflow(void) const
+bool			Conversion::get_error(void) const
 {
-	return (this->_overflow);
+	return (this->_error);
 }
 
 void			Conversion::convert_from_char(std::string & s_rep)
@@ -108,7 +131,7 @@ void			Conversion::convert_from_int(std::string & s_rep)
 
 	nb = atol(s_rep.c_str());
 	if (nb < INT_MIN || nb > INT_MAX)
-		this->_overflow = true;
+		this->_error = true;
 	else
 	{
 		this->_int_rep = atoi(s_rep.c_str());
@@ -120,14 +143,11 @@ void			Conversion::convert_from_int(std::string & s_rep)
 
 void			Conversion::convert_from_float(std::string & s_rep)
 {
-	long double		nb;
-
-	nb = strtold(s_rep.c_str(), NULL);
-	if (nb < FLT_MIN || nb > FLT_MAX)
-		this->_overflow = true;
+	this->_float_rep = strtof(s_rep.c_str(), NULL);
+	if (errno != 0)
+		this->_error = true;
 	else
 	{
-		this->_float_rep = std::atof(s_rep.c_str());
 		this->_char_rep = static_cast<char>(this->_float_rep);
 		this->_int_rep = static_cast<int>(this->_float_rep);
 		this->_double_rep = static_cast<double>(this->_float_rep);
@@ -136,14 +156,12 @@ void			Conversion::convert_from_float(std::string & s_rep)
 
 void			Conversion::convert_from_double(std::string & s_rep)
 {
-	long double		nb;
 
-	nb = strtold(s_rep.c_str(), NULL);
-	if (nb < DBL_MIN || nb > DBL_MAX)
-		this->_overflow = true;
+	this->_double_rep = strtod(s_rep.c_str(), NULL);
+	if (errno != 0)
+		this->_error = true;
 	else
 	{
-		this->_double_rep = strtod(s_rep.c_str(), NULL);
 		this->_float_rep = static_cast<float>(this->_double_rep);
 		this->_int_rep = static_cast<int>(this->_double_rep);
 		this->_char_rep = static_cast<char>(this->_double_rep);
@@ -154,7 +172,7 @@ std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
 {
 	o << "char: ";
 	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_nan()
-			|| rhs.get_overflow())
+			|| rhs.get_error())
 		o << "impossible" << std::endl;
 	else if (std::isprint(static_cast<int>(rhs.get_char_rep())))
 		o << rhs.get_char_rep() << std::endl;
@@ -162,13 +180,13 @@ std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
 		o << "Non displayable" << std::endl;
 	o << "int: ";
 	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_nan() 
-			|| rhs.get_overflow())
+			|| rhs.get_error())
 		o << "impossible" << std::endl;
 	else
 		o << rhs.get_int_rep() << std::endl;
 
 	o << "float: ";
-	if (rhs.get_overflow())
+	if (rhs.get_error())
 		o << "impossible" << std::endl;
 	else if (rhs.get_minus_inf())
 		o << "-inff" << std::endl;
@@ -184,7 +202,7 @@ std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
 		o << "f" << std::endl;
 	}
 	o << "double: ";
-	if (rhs.get_overflow())
+	if (rhs.get_error())
 		o << "impossible" << std::endl;
 	else if (rhs.get_minus_inf())
 		o << "-inf" << std::endl;
