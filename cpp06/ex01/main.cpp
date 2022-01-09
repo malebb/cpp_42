@@ -17,13 +17,15 @@ int	main(void)
 	Data			*data_deserialized;
 	uintptr_t		data_serialized;
 
-	std::cout << "Not serialized data = " << data->get_info() << std::endl;
+	std::cout << "Not serialized data = " << data->get_info()
+		<< " |  ptr value = " << data << std::endl;
 
 	data_serialized = serialize(data);
 	std::cout << "Serialized value = " << data_serialized << std::endl;
 
 	data_deserialized = deserialize(data_serialized);
-	std::cout << "Deserialized data = " << data_deserialized->get_info() << std::endl;
+	std::cout << "Deserialized data = " << data_deserialized->get_info()
+		<< "ptr value = " << data << std::endl;
 
 	delete data_deserialized;
 
