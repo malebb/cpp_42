@@ -1,7 +1,9 @@
 #include "Conversion.hpp"
 
 Conversion::Conversion() : _char_rep('0'), _int_rep(0), _float_rep(0),
-			_double_rep(0)
+			_double_rep(0), _nan(false), _minus_inf(false), _plus_inf(false),
+			_error(false)
+
 {
 }
 
@@ -25,36 +27,16 @@ static bool		is_number(std::string & s_rep)
 	}
 	return (true);
 }
-/*
-static bool		is_float_valid(std::string & s_rep)
-{
 
-	for (int i = 0; i < static_cast<int>(s_rep.length()); i++)
-	{
-		if (i != 0)
-			if (s_rep[i] == '-')
-				return (false);
-	}
-	return (true);
-}
-
-static bool		is_double_valid(std::string & s_rep)
-{
-	for (int i = 0; i < static_cast<int>(s_rep.length()); i++)
-	{
-	}
-	return (true);
-}
-*/
-
-Conversion::Conversion(std::string & s_rep)
+Conversion::Conversion(std::string & s_rep) : _nan(false),
+			_minus_inf(false), _plus_inf(false), _error(false)
 {
 	if (s_rep.compare("-inff") == 0 || s_rep.compare("-inf") == 0)
-		this->_minus_inf = 1;
-	if (s_rep.compare("+inff") == 0 || s_rep.compare("+inf") == 0)
-		this->_plus_inf = 1;
-	if (s_rep.compare("nanf") == 0 || s_rep.compare("nan") == 0)
-		this->_nan = 1;
+		this->_minus_inf = true;
+	else if (s_rep.compare("+inff") == 0 || s_rep.compare("+inf") == 0)
+		this->_plus_inf = true;
+	else if (s_rep.compare("nanf") == 0 || s_rep.compare("nan") == 0)
+		this->_nan = true;
 	else if (is_number(s_rep))
 		this->convert_from_int(s_rep);
 	else if (s_rep.length() == 1 && !(s_rep[0] >= '0' && s_rep[0] <= '9'))
@@ -74,6 +56,10 @@ Conversion&		Conversion::operator=(Conversion const & rhs)
 	this->_int_rep = rhs._int_rep;
 	this->_float_rep = rhs._float_rep;
 	this->_double_rep = rhs._double_rep;
+	this->_nan = rhs._nan;
+	this->_minus_inf = rhs._minus_inf;
+	this->_plus_inf = rhs._plus_inf;
+	this->_error = rhs._error;
 	return (*this);
 }
 
@@ -168,39 +154,9 @@ void			Conversion::convert_from_double(std::string & s_rep)
 	}
 }
 
-std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
+static void			print_double(std::ostream & o,
+			Conversion const & rhs)
 {
-	o << "char: ";
-	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_nan()
-			|| rhs.get_error())
-		o << "impossible" << std::endl;
-	else if (std::isprint(static_cast<int>(rhs.get_char_rep())))
-		o << rhs.get_char_rep() << std::endl;
-	else
-		o << "Non displayable" << std::endl;
-	o << "int: ";
-	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_nan() 
-			|| rhs.get_error())
-		o << "impossible" << std::endl;
-	else
-		o << rhs.get_int_rep() << std::endl;
-
-	o << "float: ";
-	if (rhs.get_error())
-		o << "impossible" << std::endl;
-	else if (rhs.get_minus_inf())
-		o << "-inff" << std::endl;
-	else if (rhs.get_plus_inf())
-		o << "+inff" << std::endl;
-	else if (rhs.get_nan())
-		o << "nanf" << std::endl;
-	else
-	{
-   		o << rhs.get_float_rep();
-		if (rhs.get_double_rep() == static_cast<int>(rhs.get_double_rep()))
-			o << ".0";
-		o << "f" << std::endl;
-	}
 	o << "double: ";
 	if (rhs.get_error())
 		o << "impossible" << std::endl;
@@ -217,6 +173,47 @@ std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
 			o << ".0";
 		o << std::endl;
 	}
+}
+
+static void			print_float(std::ostream & o,
+			Conversion const & rhs)
+{
+	o << "float: ";
+	if (rhs.get_error())
+		o << "impossible" << std::endl;
+	else if (rhs.get_minus_inf())
+		o << "-inff" << std::endl;
+	else if (rhs.get_plus_inf())
+		o << "+inff" << std::endl;
+	else if (rhs.get_nan())
+		o << "nanf" << std::endl;
+	else
+	{
+   		o << rhs.get_float_rep();
+		if (rhs.get_double_rep() == static_cast<int>(rhs.get_double_rep()))
+			o << ".0";
+		o << "f" << std::endl;
+	}
+}
+
+std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
+{
+	o << "char: ";
+	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_nan()
+			|| rhs.get_error())
+		o << "impossible" << std::endl;
+	else if (std::isprint(static_cast<int>(rhs.get_char_rep())))
+		o << rhs.get_char_rep() << std::endl;
+	else
+		o << "Non displayable" << std::endl;
+	o << "int: ";
+	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_nan() 
+			|| rhs.get_error())
+		o << "impossible" << std::endl;
+	else
+		o << rhs.get_int_rep() << std::endl;
+	print_double(o, rhs);
+	print_float(o, rhs);
 	return (o);
 }
 
