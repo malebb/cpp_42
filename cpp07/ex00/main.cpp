@@ -6,6 +6,7 @@ int	main(void)
 	int b = 3;
 
 	std::cout << "------------Basic tests------------" << std::endl;
+
 	::swap( a, b );
 	std::cout << "a = " << a << ", b = " << b << std::endl;
 	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
@@ -42,6 +43,7 @@ int	main(void)
 	std::cout << std::endl;
 
 	std::cout << "------------Test equals values------------" << std::endl;
+
 	int		i = 2;
 	int		j = 2;
 	int		&ret_min = min(i, j);
@@ -51,5 +53,6 @@ int	main(void)
 	std::cout << "addr j = " << &j << std::endl;
 	std::cout << "min( i, j ) = " << &ret_min << std::endl;
 	std::cout << "max( i, j ) = " << &ret_max << std::endl;
+
 	return 0;
 }
