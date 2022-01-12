@@ -1,14 +1,11 @@
 #include "iter.hpp"
 
-void	double_value(int & i)
-{
-	i*=2;
-}
-
 int	main(void)
 {
-	int		nbrs[3] = {1, 2, 3};
+	int				nbrs[3] = {1, 2, 3};
+	std::string		strs[3] = {"magenta", "green", "blue"};
 
-	iter(nbrs);
+	iter(nbrs, 3, &display);
+	iter(strs, 3, &display);
 	return (0);
 }
