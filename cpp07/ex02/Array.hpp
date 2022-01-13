@@ -19,7 +19,7 @@ class Array
 		Array&			operator=(Array const & rhs)
 		{
 			this->_array = new T[this->_n];
-			for (int i = 0; i < this->_n; i++)
+			for (unsigned int i = 0; i < this->_n; i++)
 			{
 				this->_array[i] = rhs._array[i];
 			}
@@ -33,19 +33,12 @@ class Array
 		{
 			return (this->_n);
 		}
-		T				get_array(unsigned int pos) const
+		T&				operator[](unsigned int pos)
 		{
 			if (pos < 0 || pos >= this->_n)
-				throw (std::out_of_range("out of range"));
+				throw(std::out_of_range("out of range"));
 			return (this->_array[pos]);
 		}
-		void			set_array(unsigned int pos, T value)
-		{
-			if (pos < 0 || pos >= this->_n)
-				throw (std::out_of_range("out of range"));
-			this->_array[pos] = value;
-		}
-
 	private :
 		T					*_array;
 		unsigned int		_n;
