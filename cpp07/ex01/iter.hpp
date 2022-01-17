@@ -10,9 +10,9 @@ void	display(T & elem)
 }
 
 template<typename T>
-void	iter(T *array, int length, void(*f)(T&))
+void	iter(T *array, unsigned int length, void(*f)(T&))
 {
-	for (int i = 0; i < length; i++)
+	for (unsigned int i = 0; i < length; i++)
 	{
 		(*f)(array[i]);
 	}
