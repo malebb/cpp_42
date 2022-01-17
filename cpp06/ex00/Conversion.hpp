@@ -5,6 +5,7 @@
 # include <iomanip>
 # include <stdlib.h>
 # include <limits.h>
+# include <limits>
 # include <float.h>
 # include <errno.h>
 
@@ -26,10 +27,14 @@ class Conversion
 		bool			get_minus_inf(void) const;
 		bool			get_plus_inf(void) const;
 		bool			get_error(void) const;
+		bool			get_char_overflow(void) const;
+		bool			get_int_overflow(void) const;
+		bool			get_float_overflow(void) const;
 		void			convert_from_char(std::string & s_rep);
 		void			convert_from_int(std::string & s_rep);
 		void			convert_from_float(std::string & s_rep);
 		void			convert_from_double(std::string & s_rep);
+		void			check_overflow(std::string & s_rep);
 
 	protected :
 		char		_char_rep;
@@ -40,6 +45,9 @@ class Conversion
 		bool		_minus_inf;
 		bool		_plus_inf;
 		bool		_error;
+		bool		_char_overflow;
+		bool		_int_overflow;
+		bool		_float_overflow;
 };
 
 std::ostream&		operator<<(std::ostream & o, Conversion const & rhs);

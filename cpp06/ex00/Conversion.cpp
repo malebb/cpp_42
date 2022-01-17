@@ -103,8 +103,40 @@ bool			Conversion::get_error(void) const
 	return (this->_error);
 }
 
+bool			Conversion::get_char_overflow(void) const
+{
+	return (this->_char_overflow);
+}
+
+bool			Conversion::get_int_overflow(void) const
+{
+	return (this->_int_overflow);
+}
+
+bool			Conversion::get_float_overflow(void) const
+{
+	return (this->_float_overflow);
+}
+
+void			Conversion::check_overflow(std::string & s_rep)
+{
+	double		nb;
+
+	nb = strtod(s_rep.c_str(), NULL);
+	if (errno == 0)
+	{
+		if (nb < INT_MIN || nb > INT_MAX)
+			this->_int_overflow = true;
+		if (nb < CHAR_MIN || nb > CHAR_MAX)
+			this->_char_overflow = true;
+		if (nb <= std::numeric_limits<float>::max() * -1  || nb > FLT_MAX)
+			this->_float_overflow = true;
+	}
+}
+
 void			Conversion::convert_from_char(std::string & s_rep)
 {
+	this->check_overflow(s_rep);
 	this->_char_rep = s_rep[0];
 	this->_int_rep = static_cast<int>(this->_char_rep);
 	this->_double_rep = static_cast<double>(this->_char_rep);
@@ -115,6 +147,7 @@ void			Conversion::convert_from_int(std::string & s_rep)
 {
 	long int		nb;
 
+	this->check_overflow(s_rep);
 	nb = atol(s_rep.c_str());
 	if (nb < INT_MIN || nb > INT_MAX)
 		this->_error = true;
@@ -129,6 +162,7 @@ void			Conversion::convert_from_int(std::string & s_rep)
 
 void			Conversion::convert_from_float(std::string & s_rep)
 {
+	this->check_overflow(s_rep);
 	this->_float_rep = strtof(s_rep.c_str(), NULL);
 	if (errno != 0)
 		this->_error = true;
@@ -142,7 +176,7 @@ void			Conversion::convert_from_float(std::string & s_rep)
 
 void			Conversion::convert_from_double(std::string & s_rep)
 {
-
+	this->check_overflow(s_rep);
 	this->_double_rep = strtod(s_rep.c_str(), NULL);
 	if (errno != 0)
 		this->_error = true;
@@ -179,7 +213,7 @@ static void			print_float(std::ostream & o,
 			Conversion const & rhs)
 {
 	o << "float: ";
-	if (rhs.get_error())
+	if (rhs.get_error() || rhs.get_float_overflow())
 		o << "impossible" << std::endl;
 	else if (rhs.get_minus_inf())
 		o << "-inff" << std::endl;
@@ -200,7 +234,7 @@ std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
 {
 	o << "char: ";
 	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_nan()
-			|| rhs.get_error())
+			|| rhs.get_error() || rhs.get_char_overflow())
 		o << "impossible" << std::endl;
 	else if (std::isprint(static_cast<int>(rhs.get_char_rep())))
 		o << rhs.get_char_rep() << std::endl;
@@ -208,12 +242,12 @@ std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
 		o << "Non displayable" << std::endl;
 	o << "int: ";
 	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_nan() 
-			|| rhs.get_error())
+			|| rhs.get_error() || rhs.get_int_overflow())
 		o << "impossible" << std::endl;
 	else
 		o << rhs.get_int_rep() << std::endl;
-	print_double(o, rhs);
 	print_float(o, rhs);
+	print_double(o, rhs);
 	return (o);
 }
 
