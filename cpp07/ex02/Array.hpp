@@ -11,13 +11,17 @@ class Array
 		{
 			this->_array = new T[0];
 		}
-		~Array(){};
+		virtual ~Array()
+		{
+			delete [] this->_array;
+		}
 		Array(Array const & src)
 		{
 			*this = src;
 		}
 		Array&			operator=(Array const & rhs)
 		{
+			this->_n = rhs._n;
 			this->_array = new T[this->_n];
 			for (unsigned int i = 0; i < this->_n; i++)
 			{
@@ -25,9 +29,8 @@ class Array
 			}
 			return (*this);
 		}
-		Array(unsigned int n) : _n(n)
+		Array(unsigned int n) : _array(new T[n]), _n(n)
 		{
-			this->_array = new T[n];
 		}
 		unsigned int	size(void)
 		{
@@ -39,6 +42,7 @@ class Array
 				throw(std::out_of_range("out of range"));
 			return (this->_array[pos]);
 		}
+
 	private :
 		T					*_array;
 		unsigned int		_n;
