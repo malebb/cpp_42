@@ -271,4 +271,3 @@ std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
 	print_double(o, rhs);
 	return (o);
 }
-
