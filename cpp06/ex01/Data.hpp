@@ -3,11 +3,13 @@
 
 # include <iostream>
 
+#include <inttypes.h>
+
 class Data
 {
 	public :
 		Data() : _info("some data"){}
-		~Data(){}
+		virtual ~Data(){}
 		Data(Data const & src)
 		{
 			*this = src;
