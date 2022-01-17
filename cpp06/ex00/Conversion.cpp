@@ -2,7 +2,8 @@
 
 Conversion::Conversion() : _char_rep('0'), _int_rep(0), _float_rep(0),
 			_double_rep(0), _nan(false), _minus_inf(false), _plus_inf(false),
-			_error(false)
+			_error(false), _char_overflow(false), _int_overflow(false),
+			_float_overflow(false)
 
 {
 }
@@ -29,7 +30,9 @@ static bool		is_number(std::string & s_rep)
 }
 
 Conversion::Conversion(std::string & s_rep) : _nan(false),
-			_minus_inf(false), _plus_inf(false), _error(false)
+			_minus_inf(false), _plus_inf(false), _error(false),
+			_char_overflow(false), _int_overflow(false),
+			_float_overflow(false)
 {
 	if (s_rep.compare("-inff") == 0 || s_rep.compare("-inf") == 0)
 		this->_minus_inf = true;
