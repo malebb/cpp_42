@@ -1,10 +1,9 @@
 #include "Conversion.hpp"
 
 Conversion::Conversion() : _char_rep('0'), _int_rep(0), _float_rep(0),
-			_double_rep(0), _nan(false), _minus_inf(false), _plus_inf(false),
-			_error(false), _char_overflow(false), _int_overflow(false),
-			_float_overflow(false)
-
+			_double_rep(0), _nan(false), _minus_inf(false), _plus_inf(false), 
+			_inf(false), _error(false), _char_overflow(false),
+			_int_overflow(false), _float_overflow(false), _exp(false)
 {
 }
 
@@ -30,14 +29,16 @@ static bool		is_number(std::string & s_rep)
 }
 
 Conversion::Conversion(std::string & s_rep) : _nan(false),
-			_minus_inf(false), _plus_inf(false), _error(false),
+			_minus_inf(false), _plus_inf(false), _inf(false), _error(false),
 			_char_overflow(false), _int_overflow(false),
-			_float_overflow(false)
+			_float_overflow(false), _exp(false)
 {
 	if (s_rep.compare("-inff") == 0 || s_rep.compare("-inf") == 0)
 		this->_minus_inf = true;
 	else if (s_rep.compare("+inff") == 0 || s_rep.compare("+inf") == 0)
 		this->_plus_inf = true;
+	else if (s_rep.compare("inff") == 0 || s_rep.compare("inf") == 0)
+		this->_inf = true;
 	else if (s_rep.compare("nanf") == 0 || s_rep.compare("nan") == 0)
 		this->_nan = true;
 	else if (is_number(s_rep))
@@ -96,6 +97,11 @@ bool			Conversion::get_plus_inf(void) const
 	return (this->_plus_inf);
 }
 
+bool			Conversion::get_inf(void) const
+{
+	return (this->_inf);
+}
+
 bool			Conversion::get_nan(void) const
 {
 	return (this->_nan);
@@ -119,6 +125,11 @@ bool			Conversion::get_int_overflow(void) const
 bool			Conversion::get_float_overflow(void) const
 {
 	return (this->_float_overflow);
+}
+
+bool			Conversion::get_exp(void) const
+{
+	return (this->_exp);
 }
 
 void			Conversion::check_overflow(std::string & s_rep)
@@ -194,6 +205,8 @@ void			Conversion::convert_from_double(std::string & s_rep)
 static void			print_double(std::ostream & o,
 			Conversion const & rhs)
 {
+	std::stringstream		sstream;
+
 	o << "double: ";
 	if (rhs.get_error())
 		o << "impossible" << std::endl;
@@ -201,12 +214,16 @@ static void			print_double(std::ostream & o,
 		o << "-inf" << std::endl;
 	else if (rhs.get_plus_inf())
 		o << "+inf" << std::endl;
+	else if (rhs.get_inf())
+		o << "inf" << std::endl;
 	else if (rhs.get_nan())
 		o << "nan" << std::endl;
 	else
 	{
 		o << rhs.get_double_rep();
-		if (rhs.get_double_rep() == static_cast<int>(rhs.get_double_rep()))
+		sstream << rhs.get_double_rep();
+		if ((rhs.get_double_rep() == static_cast<int>(rhs.get_double_rep()))
+			&& (sstream.str()).find("e") == std::string::npos)
 			o << ".0";
 		o << std::endl;
 	}
@@ -215,6 +232,8 @@ static void			print_double(std::ostream & o,
 static void			print_float(std::ostream & o,
 			Conversion const & rhs)
 {
+	std::stringstream		sstream;
+
 	o << "float: ";
 	if (rhs.get_error() || rhs.get_float_overflow())
 		o << "impossible" << std::endl;
@@ -222,12 +241,16 @@ static void			print_float(std::ostream & o,
 		o << "-inff" << std::endl;
 	else if (rhs.get_plus_inf())
 		o << "+inff" << std::endl;
+	else if (rhs.get_inf())
+		o << "inff" << std::endl;
 	else if (rhs.get_nan())
 		o << "nanf" << std::endl;
 	else
 	{
    		o << rhs.get_float_rep();
-		if (rhs.get_double_rep() == static_cast<int>(rhs.get_double_rep()))
+		sstream << rhs.get_float_rep();
+		if ((rhs.get_float_rep() == static_cast<int>(rhs.get_double_rep()))
+			&& (sstream.str()).find("e") == std::string::npos)
 			o << ".0";
 		o << "f" << std::endl;
 	}
@@ -236,15 +259,15 @@ static void			print_float(std::ostream & o,
 std::ostream&		operator<<(std::ostream & o, Conversion const & rhs)
 {
 	o << "char: ";
-	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_nan()
+	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_inf() || rhs.get_nan()
 			|| rhs.get_error() || rhs.get_char_overflow())
 		o << "impossible" << std::endl;
 	else if (std::isprint(static_cast<int>(rhs.get_char_rep())))
-		o << rhs.get_char_rep() << std::endl;
+		o << "'" << rhs.get_char_rep() << "'" << std::endl;
 	else
 		o << "Non displayable" << std::endl;
 	o << "int: ";
-	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_nan() 
+	if (rhs.get_minus_inf() || rhs.get_plus_inf() || rhs.get_inf() || rhs.get_nan() 
 			|| rhs.get_error() || rhs.get_int_overflow())
 		o << "impossible" << std::endl;
 	else
