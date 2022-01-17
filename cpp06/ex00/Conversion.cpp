@@ -3,7 +3,7 @@
 Conversion::Conversion() : _char_rep('0'), _int_rep(0), _float_rep(0),
 			_double_rep(0), _nan(false), _minus_inf(false), _plus_inf(false), 
 			_inf(false), _error(false), _char_overflow(false),
-			_int_overflow(false), _float_overflow(false), _exp(false)
+			_int_overflow(false), _float_overflow(false)
 {
 }
 
@@ -31,7 +31,7 @@ static bool		is_number(std::string & s_rep)
 Conversion::Conversion(std::string & s_rep) : _nan(false),
 			_minus_inf(false), _plus_inf(false), _inf(false), _error(false),
 			_char_overflow(false), _int_overflow(false),
-			_float_overflow(false), _exp(false)
+			_float_overflow(false)
 {
 	if (s_rep.compare("-inff") == 0 || s_rep.compare("-inf") == 0)
 		this->_minus_inf = true;
@@ -125,11 +125,6 @@ bool			Conversion::get_int_overflow(void) const
 bool			Conversion::get_float_overflow(void) const
 {
 	return (this->_float_overflow);
-}
-
-bool			Conversion::get_exp(void) const
-{
-	return (this->_exp);
 }
 
 void			Conversion::check_overflow(std::string & s_rep)

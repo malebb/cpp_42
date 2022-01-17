@@ -10,7 +10,6 @@
 # include <errno.h>
 # include <sstream>
 
-extern int errno;
 
 class Conversion
 {
@@ -32,7 +31,6 @@ class Conversion
 		bool			get_char_overflow(void) const;
 		bool			get_int_overflow(void) const;
 		bool			get_float_overflow(void) const;
-		bool			get_exp(void) const;
 		void			convert_from_char(std::string & s_rep);
 		void			convert_from_int(std::string & s_rep);
 		void			convert_from_float(std::string & s_rep);
@@ -52,7 +50,6 @@ class Conversion
 		bool		_char_overflow;
 		bool		_int_overflow;
 		bool		_float_overflow;
-		bool		_exp;
 };
 
 std::ostream&		operator<<(std::ostream & o, Conversion const & rhs);
