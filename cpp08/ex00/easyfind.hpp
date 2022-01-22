@@ -5,13 +5,22 @@
 #include <iostream>
 #include <algorithm>
 
+class ValueNotFoundException : public std::exception
+{
+	public :
+		const char*		what() const throw()
+		{
+			return ("Value has not been found");
+		}
+};
+
 template<typename T>
 typename T::const_iterator easyfind(T const & container, int nb)
 {
 	typename T::const_iterator  it = find(container.begin(), container.end(), nb);
 
 	if (it == container.end())
-		throw(std::runtime_error("Integer does not exist"));
+		throw(ValueNotFoundException());
 	return (it);
 }
 
