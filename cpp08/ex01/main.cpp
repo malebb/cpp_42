@@ -10,11 +10,11 @@ int	main(void)
 	try
 	{
 		span.addNumber(5);
-		span.addNumber(60);
 		span.addNumber(7);
-		span.addNumber(80);
+		span.addNumber(8);
 		span.addNumber(90);
 		std::cout << "Shortest span = " <<  span.shortestSpan() << std::endl;
+		std::cout << "Longest span = " <<  span.longestSpan() << std::endl;
 	}
 	catch(std::exception const & e)
 	{

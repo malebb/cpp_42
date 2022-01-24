@@ -62,7 +62,6 @@ long long int					Span::shortestSpan() const
 		for (std::vector<long long int>::const_iterator it = this->_nbrs.begin() + i + 1;
 			   	it != this->_nbrs.end(); it++)
 		{
-//			std::cout << "current = " << *current << " " << smallest_span << std::endl;
 			if (*current > *it)
 				current_span = *current - *it;
 			else
@@ -74,4 +73,30 @@ long long int					Span::shortestSpan() const
 		}
 	}
 	return (smallest_span);
+}
+
+long long int					Span::longestSpan() const
+{
+	long long int							longest_span;
+	long long int							current_span;
+
+	if (this->_nbrs.size() <= 1)
+		throw(NotEnoughNumbersException());
+	for (unsigned int i = 0; i < this->_nbrs.size() - 1; i++)
+	{
+		std::vector<long long int>::const_iterator current = this->_nbrs.begin() + i;
+		for (std::vector<long long int>::const_iterator it = this->_nbrs.begin() + i + 1;
+			   	it != this->_nbrs.end(); it++)
+		{
+			if (*current > *it)
+				current_span = *current - *it;
+			else
+				current_span = *it - *current;
+			if (i == 0 && it == current + 1)
+				longest_span = current_span;
+			else if (current_span > longest_span)
+				longest_span = current_span;
+		}
+	}
+	return (longest_span);
 }
