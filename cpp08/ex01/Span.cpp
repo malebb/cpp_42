@@ -27,6 +27,15 @@ Span::Span(unsigned int N)
 	this->_N = N;
 }
 
+Span::Span()
+{
+	Random		random_generator;
+
+	if (this->_nbrs.size() != this->_N)
+	{
+		std::generate(this->_nbrs.begin() + this->_nbrs.size(), this->_nbrs.end(), random_generator);
+	}
+}
 const char*						Span::FullArrayException::what() const throw()
 {
 	return ("Array is full");
@@ -100,3 +109,4 @@ long long int					Span::longestSpan() const
 	}
 	return (longest_span);
 }
+
