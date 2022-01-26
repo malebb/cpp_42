@@ -7,9 +7,8 @@ int	main(void)
 		<< std::endl;
 	try
 	{
-		Span		span(5);
+		Span		span(5, -5, 5);
 		std::vector<long long int>		nbrs;
-		span.fillWithRandom();
 		nbrs = span.get_nbrs();
 		for (std::vector<long long int>::iterator it = nbrs.begin();
 				it != nbrs.end(); it++)

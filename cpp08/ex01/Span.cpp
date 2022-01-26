@@ -27,9 +27,10 @@ Span::Span(unsigned int N)
 	this->_N = N;
 }
 
-Span::Span()
+Span::Span(unsigned int N, long long int min, long long int max) : _N(N),
+	_nbrs(std::vector<long long int>(N))
 {
-	Random		random_generator;
+	Random		random_generator(min, max);
 
 	if (this->_nbrs.size() != this->_N)
 	{

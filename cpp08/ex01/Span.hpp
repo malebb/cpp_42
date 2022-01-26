@@ -11,16 +11,19 @@
 class Random
 {
 	public :
-		Random()
+		Random(long long int min, long long int max) : _min(min), _max(max)
 		{
 			srand(time(NULL));
 		}
-		long long int		operator()(std::vector<long long int> nbrs)
+		long long int		operator()()
 		{
-			nbrs.push_back()
-			return (rand() % 4294967295
- + (-2147483648));
+			return (rand() % (this->_max - this->_min)
+ + (this->_min));
 		}
+
+	private :
+		long long int		_min;
+		long long int		_max;
 };
 
 class Span
@@ -31,11 +34,11 @@ class Span
 		Span(Span const & src);
 		Span&							operator=(Span const & rhs);
 		Span(unsigned int N);
+		Span(unsigned int N, long long int min, long long int max);
 		void							addNumber(long long int nb);
 		std::vector<long long int>		get_nbrs(void) const;
 		long long int					shortestSpan() const;
 		long long int					longestSpan() const;
-		void							fillWithRandom(void);
 
 		class FullArrayException : public std::exception
 		{
