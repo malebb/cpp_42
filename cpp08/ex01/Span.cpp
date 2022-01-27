@@ -32,11 +32,9 @@ Span::Span(unsigned int N, long long int min, long long int max) : _N(N),
 {
 	Random		random_generator(min, max);
 
-	if (this->_nbrs.size() != this->_N)
-	{
-		std::generate(this->_nbrs.begin() + this->_nbrs.size(), this->_nbrs.end(), random_generator);
-	}
+	std::generate(this->_nbrs.begin(), this->_nbrs.end(), random_generator);
 }
+
 const char*						Span::FullArrayException::what() const throw()
 {
 	return ("Array is full");

@@ -3,6 +3,25 @@
 int	main(void)
 {
 	srand(time(NULL));
+
+	std::cout << "------------ Test from subject ------------"
+		<< std::endl;
+	try
+	{
+		Span sp = Span(5);
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
+	catch(std::exception const & e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
 	std::cout << "------------ Test with 5 numbers ------------"
 		<< std::endl;
 	try
@@ -33,12 +52,8 @@ int	main(void)
 		<< std::endl;
 	try
 	{
-		Span		span(11000);
-		for (int i = 0; i < 11000; i++)
-		{
-			span.addNumber(rand() % 4294967295
- + (-2147483648));
-		}
+		Span		span(11000, -2147483648, 2147483648);
+
 		std::cout << "Shortest span = " <<  span.shortestSpan() << std::endl;
 		std::cout << "Longest span = " <<  span.longestSpan() << std::endl;
 	}
@@ -46,12 +61,14 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+
 	std::cout << std::endl;
 	std::cout << "------------ Test add too many numbers ------------"
 		<< std::endl;
 	try
 	{
 		Span		span(3);
+
 		for (int i = 0; i < 4; i++)
 		{
 			span.addNumber(3);
@@ -63,6 +80,7 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+
 	std::cout << std::endl;
 	std::cout << "------------ Determine span empty array ------------"
 		<< std::endl;
@@ -77,6 +95,7 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+
 	std::cout << std::endl;
 	std::cout << "------------ Determine span size = 1 array ------------"
 		<< std::endl;

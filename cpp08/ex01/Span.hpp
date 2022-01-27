@@ -4,24 +4,26 @@
 #include <exception>
 #include <vector>
 #include <iostream>
-#include <iostream>
 #include <stdlib.h>
 #include <algorithm>
 
 class Random
 {
 	public :
+
 		Random(long long int min, long long int max) : _min(min), _max(max)
 		{
 			srand(time(NULL));
 		}
+
 		long long int		operator()()
 		{
-			return (rand() % (this->_max - this->_min)
+			return (rand() % (abs(this->_max - this->_min))
  + (this->_min));
 		}
 
 	private :
+
 		long long int		_min;
 		long long int		_max;
 };
