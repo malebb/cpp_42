@@ -33,6 +33,7 @@ int	main(void)
 	std::cout << *--iter;
 	std::cout << " ";
 	std::cout << *--iter;
+	std::cout << std::endl;
 
 	std::cout << std::endl;
 	std::cout << "------------ Test iterate copy ------------" << std::endl;
