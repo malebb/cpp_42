@@ -30,6 +30,14 @@ Span::Span(unsigned int N)
 Span::Span(unsigned int N, long long int min, long long int max) : _N(N),
 	_nbrs(std::vector<long long int>(N))
 {
+	long long int	tmp;
+
+	tmp = min;
+	if (min > max)
+	{
+		min = max;
+		max = tmp;
+	}
 	Random		random_generator(min, max);
 
 	std::generate(this->_nbrs.begin(), this->_nbrs.end(), random_generator);
@@ -74,9 +82,7 @@ long long int					Span::shortestSpan() const
 				current_span = *current - *it;
 			else
 				current_span = *it - *current;
-			if (i == 0 && it == current + 1)
-				smallest_span = current_span;
-			else if (current_span < smallest_span)
+			if ((i == 0 && it == current + 1) || (current_span < smallest_span))
 				smallest_span = current_span;
 		}
 	}
@@ -100,9 +106,7 @@ long long int					Span::longestSpan() const
 				current_span = *current - *it;
 			else
 				current_span = *it - *current;
-			if (i == 0 && it == current + 1)
-				longest_span = current_span;
-			else if (current_span > longest_span)
+			if ((i == 0 && it == current + 1) || (current_span > longest_span))
 				longest_span = current_span;
 		}
 	}

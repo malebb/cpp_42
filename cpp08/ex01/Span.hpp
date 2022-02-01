@@ -18,7 +18,7 @@ class Random
 
 		long long int		operator()()
 		{
-			return (rand() % (abs(this->_max - this->_min))
+			return (rand() % (abs(this->_max - this->_min) + 1)
  + (this->_min));
 		}
 
@@ -31,6 +31,7 @@ class Random
 class Span
 {
 	public :
+
 		Span();
 		virtual ~Span();
 		Span(Span const & src);
@@ -53,6 +54,7 @@ class Span
 		};
 
 	private :
+
 		unsigned int					_N;
 		std::vector<long long int>		_nbrs;
 };
